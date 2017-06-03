@@ -11,7 +11,7 @@ import CoreData
 
 class CoreDataHelper: NSObject {
     
-    static private let instance = CoreDataHelper()
+    static fileprivate let instance = CoreDataHelper()
     
     static func getInstance() -> CoreDataHelper {
         return instance;
@@ -23,27 +23,27 @@ class CoreDataHelper: NSObject {
 
     var context: NSManagedObjectContext
     
-    private override init() {
+    fileprivate override init() {
         // This resource is the same name as your xcdatamodeld contained in your project.
-        guard let modelURL = NSBundle.mainBundle().URLForResource("GoPartyServerModel", withExtension:"momd") else {
+        guard let modelURL = Bundle.main.url(forResource: "GoPartyServerModel", withExtension:"momd") else {
             fatalError("Error loading model from bundle")
         }
         // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-        guard let mom = NSManagedObjectModel(contentsOfURL: modelURL) else {
+        guard let mom = NSManagedObjectModel(contentsOf: modelURL) else {
             fatalError("Error initializing mom from: \(modelURL)")
         }
         let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
-        self.context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        self.context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         self.context.persistentStoreCoordinator = psc
         
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docURL = urls[urls.endIndex-1]
         /* The directory the application uses to store the Core Data store file.
          This code uses a file named "DataModel.sqlite" in the application's documents directory.
          */
-        let storeURL = docURL.URLByAppendingPathComponent("GoPartyServerModel.sqlite")
+        let storeURL = docURL.appendingPathComponent("GoPartyServerModel.sqlite")
         do {
-            try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
         } catch {
             fatalError("Error migrating store: \(error)")
         }
@@ -84,25 +84,25 @@ class CoreDataHelper: NSObject {
         return true
     }
     
-    func deleteEntity( entity: NSManagedObject ) {
+    func deleteEntity( _ entity: NSManagedObject ) {
         
-        context.deleteObject( entity )
+        context.delete( entity )
         save()
     }
     
-    func deleteAllEntitesByTypeName( entityTypeName: String ) -> Bool {
-        let request = NSFetchRequest( entityName: entityTypeName )
+    func deleteAllEntitesByTypeName( _ entityTypeName: String ) -> Bool {
+        let request = NSFetchRequest<NSFetchRequestResult>( entityName: entityTypeName )
         do {
-            let result = try context.executeFetchRequest( request )
+            let result = try context.fetch( request )
             for entity in result {
 //                if let user = entity as? User {
 //                    print(user.uid?)
-//                    print(Model.getInstance().currentUser!.uid?)
-//                    if user.uid? == Model.getInstance().currentUser!.uid? {
+//                    print(AppDelegate.TheModel.currentUser!.uid?)
+//                    if user.uid? == AppDelegate.TheModel.currentUser!.uid? {
 //                        continue
 //                    }
 //                }
-                context.deleteObject(entity as! NSManagedObject)
+                context.delete(entity as! NSManagedObject)
             }
             save()
         } catch {

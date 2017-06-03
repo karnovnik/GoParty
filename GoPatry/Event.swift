@@ -11,161 +11,292 @@ import CoreData
 import CoreLocation
 
 
-class Event: NSManagedObject {
+class Event: NSObject {
 
+    // for debug sake
+    static var eventsDict = [String:Int]()
+    
+    var owner_uid: String!
+    var title: String?
+    var descrition: String?
+    var time: NSDate?
+    var event_location: String?
+    var doubters = [String]()
+    var accepted = [String]()
+    var refused = [String]()
+    var invitations = [String]()
+    
+    var status = AvailableEventStatus.CREATED
+    var category = AvailableCategories.NONE
+       
+    var key: String?
+    
+    var eventOwner: User?
+    var isNew = false
+    
+    var isOpen = true // if available for all subscribers
+    
+    var comments = Comments()
+    
+    var selectedListAtDetailView: AvailableUserStatus = .NONE
+    
     override var description: String {
-        return getProretiesByDict()
-    }
+        return "Event description: \n" + "key:\(key)\n" + toAnyObject().description    }
     
-    private(set) var eventOwner: User?
-    
-    var doubters_uids: [String] {
-        get {
-            if let uids = (doubters_db?.split(",")) {
-                return uids
-            }
-            return [String]()
-        }
-    }
-
-    var accepted_uids: [String] {
-        get {
-            if let uids = (accepted_db?.split(",")) {
-                return uids
-            }
-            return [String]()
-        }
-    }
-
-    var refused_uids: [String] {
-        get {
-            if let uids = (refused_db?.split(",")) {
-                return uids
-            }
-            return [String]()
-        }
-    }
-    
-    
-    class var entity: NSEntityDescription {
-        return NSEntityDescription.entityForName("Event", inManagedObjectContext: CoreDataHelper.getInstance().context)!
-    }
-    
-    convenience init() {
-        self.init( entity: Event.entity, insertIntoManagedObjectContext: CoreDataHelper.getInstance().context )
-    }
-    
-    class func fetchAllEntities() -> [Event] {
-        let request = NSFetchRequest( entityName: "Event" )
-        do {
-            let result = try CoreDataHelper.getInstance().context.executeFetchRequest( request ) as! [Event]
-            return result
-        } catch {
-            print("Something wrong into Event::fetchAllEntities \(error)")
+    convenience init( owner_uid: String,
+                      title: String?,
+                      descrition: String?,
+                      time: Date?,
+                      location: String? ) {
+        self.init()
+        
+        self.owner_uid = owner_uid
+        
+        // for debug sake
+        if (Event.eventsDict[self.owner_uid!] != nil) {
+            Event.eventsDict[self.owner_uid!]! += 1
+        } else {
+            Event.eventsDict[self.owner_uid!] = 0
         }
         
-        return [Event]()
+        self.title = title ?? ( "event_title" + String( Event.eventsDict[self.owner_uid!]! ) )
+        self.descrition = descrition ?? ( "event_descr" + String( Event.eventsDict[self.owner_uid!]! ) )
+        self.time = time as NSDate?? ?? NSDate.random() as NSDate?
+        self.event_location = location ?? Model.TheModel.locationManagerHepler.getCurrentGeolocation()?.description
+        
+        self.accepted.append(self.owner_uid)
+        
+        self.selectedListAtDetailView = .ACCEPT
     }
     
     func getCurrentStatus() -> AvailableUserStatus {
         
-        if let currentUid = Model.getInstance().currentUser.uid {
-            if accepted_uids.contains( currentUid )  {
-                return AvailableUserStatus.ACCEPT
-            }
-            
-            if refused_uids.contains( currentUid )  {
-                return AvailableUserStatus.REFUSE
-            }
-            
-            if doubters_uids.contains( currentUid )  {
-                return AvailableUserStatus.DOUBT
-            }
+        let currentUid = Model.TheModel.currentUser.uid
+        
+//        if eventOwner?.uid == currentUid {
+//            return AvailableUserStatus.ACCEPT
+//        }
+        
+        if accepted.contains( currentUid )  {
+            return AvailableUserStatus.ACCEPT
         }
         
+        if refused.contains( currentUid )  {
+            return AvailableUserStatus.REFUSE
+        }
+        
+        if doubters.contains( currentUid )  {
+            return AvailableUserStatus.DOUBT
+        }
         
         return AvailableUserStatus.NONE
     }
     
-    func setCurrentStatusAnsSave( newStatus newStatus: AvailableUserStatus ) {
+    func setCurrentStatusAndSave( newStatus: AvailableUserStatus ) {
         
         // remove current user uid from all lists
-        if let currentUid = Model.getInstance().currentUser.uid {
-            if accepted_uids.contains( currentUid )  {
-                if var uids = (accepted_db?.split(",")) {
-                    uids.removeAtIndex( uids.indexOf( currentUid )! )
-                    accepted_db = uids.joinWithSeparator(",")
-                }
-            }
+        let currentUid = Model.TheModel.currentUser.uid
+        
+        if accepted.contains( currentUid )  {
+            accepted.remove(at: accepted.index(of: currentUid )! )
+        }
             
-            if refused_uids.contains( currentUid )  {
-                if var uids = (refused_db?.split(",")) {
-                    uids.removeAtIndex( uids.indexOf( currentUid )! )
-                    refused_db = uids.joinWithSeparator(",")
-                }
-            }
+        if refused.contains( currentUid )  {
+            refused.remove(at: refused.index(of: currentUid )! )
+        }
             
-            if doubters_uids.contains( currentUid )  {
-                if var uids = (doubters_db?.split(",")) {
-                    uids.removeAtIndex( uids.indexOf( currentUid )! )
-                    doubters_db = uids.joinWithSeparator(",")
-                }
-            }
+        if doubters.contains( currentUid )  {
+            doubters.remove(at: doubters.index(of: currentUid )! )
         }
         
-        if newStatus != .NONE {
+        if newStatus != .none {
             // add current user uid into right list
-            if let currentUid = Model.getInstance().currentUser.uid {
-                if newStatus == .ACCEPT  {
-                    if var uids = ( accepted_db?.split(",") ) {
-                        uids.append( currentUid )
-                        accepted_db = uids.joinWithSeparator(",")
-                    }
-                }
-                
-                if newStatus == .REFUSE {
-                    if var uids = ( refused_db?.split(",") ) {
-                        uids.append( currentUid )
-                        refused_db = uids.joinWithSeparator(",")
-                    }
-                }
             
-                if newStatus == .DOUBT {
-                    if var uids = ( doubters_db?.split(",") ) {
-                        uids.append( currentUid )
-                        doubters_db = uids.joinWithSeparator(",")
-                    }
-                }
+            if newStatus == .ACCEPT  {
+                accepted.append( currentUid )
+            }
+                
+            if newStatus == .REFUSE {
+                refused.append( currentUid )
+            }
+            
+            if newStatus == .DOUBT {
+                doubters.append( currentUid )
             }
         }
     
-        CoreDataHelper.getInstance().save()
+        save()
+    }
+    
+    func save() {
+        Model.TheModel.saveEvent( event: self )
     }
     
     func getLocation() -> CLLocation? {
         
-        print( "event_location \(event_location)")
+        print( "location \(event_location)")
         if let locationStr = event_location {
-            let coordinats = locationStr.split(",")
+            let coordinats = locationStr.split(separator: ",")
             if coordinats.count == 2 {
                 let location = CLLocation(latitude: Double( coordinats[0] )!, longitude: Double( coordinats[1] )!)
-                return location//Model.getInstance().getCurrentGeolocation()
+                return location//AppDelegate.TheModel.getCurrentGeolocation()
             }
         }
         
         return nil
     }
     
-    func setLocation( newLocation: CLLocation ) {
+    func setLocation( _ newLocation: CLLocation ) {
         event_location = "\(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)"
-        CoreDataHelper.getInstance().save()
+        
+        save()
     }
     
-    func getProretiesByDict() -> String {
-        return "eventOwner: \(eventOwner!.nik!)\ntitle: \(title!)\nlocation: \(event_location)"
-    }
-    
-    func setOwner( user: User ) {
+    func setOwner( _ user: User ) {
         eventOwner = user
     }
+    
+    func toAnyObject() -> AnyObject {
+        return [
+            "owner_uid":    owner_uid,
+            "title":        title ?? "some_title",
+            "descrition":   descrition ?? "some_descr",
+            "time":         time!.description ,
+            "location":     event_location ?? "location",
+            "doubters":     doubters,
+            "accepted":     accepted,
+            "refused":      refused,
+            "invitations":  invitations,
+            "status":       status.rawValue,
+            "category":     category.rawValue,
+            "isOpen":       isOpen
+            ] as NSDictionary
+    }
+    
+//    func getReadableTime() -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = NSLocale.current
+//        dateFormatter.dateFormat = "eee MMM dd yyyy"
+//        return dateFormatter.string(from: time as! Date)
+//    }
+    
+    func updateEvent( event: Event ) {
+        title           = event.title
+        descrition      = event.descrition
+        time            = event.time
+        event_location  = event.event_location
+        doubters        = event.doubters
+        accepted        = event.accepted
+        refused         = event.refused
+        status          = event.status
+        category        = event.category
+        isOpen          = event.isOpen
+    }
+    
+    class func createEventFromSnapshot( inValue: Any, key: String ) -> Event? {
+        
+        if let value = inValue as? NSDictionary {
+            
+            var owner_uid = "owner_uid"
+            if let val = value["owner_uid"] {
+                owner_uid = val as! String
+            }
+            
+            var title = "Title"
+            if let val = value["title"] {
+                title = val as! String
+            }
+            
+            var descrition = "Descr"
+            if let val = value["descrition"] {
+                descrition = val as! String
+            }
+            
+            var event_location: String?
+            if let val = value["location"] {
+                event_location = val as? String
+            }
+            
+            var time: Date?
+            if let val = value["time"] {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                
+                time = dateFormatter.date( from: val as! String )
+            }
+            
+            let event = Event(owner_uid: owner_uid, title: title, descrition: descrition, time: time, location: event_location)
+            
+            event.key = key
+            if let val = value["doubters"] {
+                event.doubters = (val as? [String])!
+            }
+            if let val = value["accepted"] {
+                event.accepted = (val as? [String])!
+            }
+            if let val = value["refused"] {
+                event.refused = (val as? [String])!
+            }
+            if let val = value["invitations"] {
+                event.invitations = (val as? [String])!
+            }
+            if let val = value["status"] {
+                event.status = AvailableEventStatus( rawValue: (val as? Int)! )!
+            }
+            if let val = value["category"] {
+                event.category = AvailableCategories( rawValue: (val as? Int)! )!
+            }
+            if let val = value["isOpen"] {
+                event.isOpen = ( val as? Bool )!//! == "true" ? true : false
+            }
+            
+            if !event.accepted.contains( owner_uid ){
+                event.accepted.append( owner_uid )
+            }
+            
+            return event
+        }
+        
+        return nil
+    }
+    
+    func getEventScopedUsersUID() -> [String] {
+        var scopedUIDs = Set<String>()
+        
+        scopedUIDs.insert( owner_uid )
+       
+        for uid in accepted {
+            scopedUIDs.insert( uid )
+        }
+        for uid in refused {
+            scopedUIDs.insert( uid )
+        }
+        for uid in doubters {
+            scopedUIDs.insert( uid )
+        }
+
+        return Array( scopedUIDs )
+    }
+    
+    // comments
+    func getComments() -> [Comment] {
+        
+        return (comments.comments) ?? [Comment]()
+    }
+    
+//    func removeComment( comment: Comment ) {
+//        if comment.user_uid == Model.TheModel.currentUser.uid {
+//            if let index = comments?.comments.index( of: comment) {
+//                comments?.comments.remove( at: index )
+//                Model.TheModel.saveComment( comments: comments! )
+//            }
+//        }
+//    }
+    
+//    func addComment( comment: Comment ) {
+//        if !(comments?.comments.contains( comment ))! {
+//            comments?.comments.append( comment )
+//            Model.TheModel.addComment(comment: comment )
+//        }
+//    }
 }

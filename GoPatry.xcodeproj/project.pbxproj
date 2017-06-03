@@ -17,38 +17,56 @@
 		844D4C481D5741D200039352 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844D4C461D5741D200039352 /* LaunchScreen.storyboard */; };
 		844D4C501D57421E00039352 /* GoPartyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D4C4F1D57421E00039352 /* GoPartyTableViewController.swift */; };
 		84F1EFF91D64B458008C3376 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1EFF81D64B458008C3376 /* EventTableViewCell.swift */; };
-		D3F0A80DE5D7CF47B2ABB3A8 /* Pods_GoPatry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A3B0558BCE8B138938464 /* Pods_GoPatry.framework */; };
+		D3F0A80DE5D7CF47B2ABB3A8 /* Pods_GoPatry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A3B0558BCE8B138938464 /* Pods_GoPatry.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		DD0273FC1EAC80900038B98F /* CreateViewTitleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0273FB1EAC80900038B98F /* CreateViewTitleItem.swift */; };
+		DD0274021EBECFF30038B98F /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0274011EBECFF30038B98F /* GroupsViewController.swift */; };
+		DD0274041EBED15B0038B98F /* GroupViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0274031EBED15B0038B98F /* GroupViewCell.swift */; };
+		DD0274061EBED6480038B98F /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0274051EBED6480038B98F /* CreateGroupViewController.swift */; };
+		DD0274081EBEDEF20038B98F /* SelectPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0274071EBEDEF20038B98F /* SelectPeopleViewController.swift */; };
+		DD02740A1EBEE65E0038B98F /* AvatarCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0274091EBEE65E0038B98F /* AvatarCollectionCell.swift */; };
+		DD02740C1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD02740B1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift */; };
+		DD11796C1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11796B1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift */; };
+		DD159CB91E3C587100A056FE /* DebugLoggerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD159CB81E3C587100A056FE /* DebugLoggerHelper.swift */; };
+		DD159CBB1E506BB100A056FE /* CreateEventTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD159CBA1E506BB100A056FE /* CreateEventTypeViewController.swift */; };
 		DD1F03A71D7A97D200211CAB /* GoPartyServerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD1F03A51D7A97D200211CAB /* GoPartyServerModel.xcdatamodeld */; };
 		DD1F03CC1D7BE60B00211CAB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1F03CB1D7BE60B00211CAB /* Enums.swift */; };
 		DD1F03CE1D7BECC100211CAB /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1F03CD1D7BECC100211CAB /* FakeData.swift */; };
-		DD3AE5011D963D57008F8DC2 /* SelectedStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5001D963D57008F8DC2 /* SelectedStatusViewController.swift */; };
-		DD3AE5031D9645EB008F8DC2 /* SelectedStatusTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5021D9645EB008F8DC2 /* SelectedStatusTableCell.swift */; };
 		DD3AE5071D97D58F008F8DC2 /* CreateEventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5061D97D58F008F8DC2 /* CreateEventMapViewController.swift */; };
 		DD3AE50C1D97E529008F8DC2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE50B1D97E529008F8DC2 /* LocationManager.swift */; };
 		DD3AE50E1D9BB9A1008F8DC2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE50D1D9BB9A1008F8DC2 /* MainTabBarController.swift */; };
-		DD3AE5101D9BC1C5008F8DC2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE50F1D9BC1C5008F8DC2 /* AuthViewController.swift */; };
-		DD3AE5171D9E44AA008F8DC2 /* Connections+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5151D9E44AA008F8DC2 /* Connections+CoreDataProperties.swift */; };
 		DD3AE5181D9E44AA008F8DC2 /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5161D9E44AA008F8DC2 /* Connections.swift */; };
-		DD3AE51A1D9E5B12008F8DC2 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5191D9E5B12008F8DC2 /* AddFriendsViewController.swift */; };
-		DD3AE51C1D9F7764008F8DC2 /* FriendsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE51B1D9F7763008F8DC2 /* FriendsTableCell.swift */; };
+		DD3AE51A1D9E5B12008F8DC2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5191D9E5B12008F8DC2 /* SearchViewController.swift */; };
 		DD3AE51E1D9F7C82008F8DC2 /* FacebookHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE51D1D9F7C82008F8DC2 /* FacebookHelper.swift */; };
 		DD3AE5201D9F8169008F8DC2 /* IconsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE51F1D9F8169008F8DC2 /* IconsStorageManager.swift */; };
-		DD3AE5231D9F9B42008F8DC2 /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5211D9F9B42008F8DC2 /* Comment+CoreDataProperties.swift */; };
-		DD3AE5241D9F9B42008F8DC2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5221D9F9B42008F8DC2 /* Comment.swift */; };
 		DD3AE5261D9FF03D008F8DC2 /* CommentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5251D9FF03D008F8DC2 /* CommentTableCell.swift */; };
 		DD3AE5281D9FF17A008F8DC2 /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AE5271D9FF17A008F8DC2 /* CommentTableViewController.swift */; };
+		DD3C424A1E751FC900E41A84 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C42491E751FC900E41A84 /* UserCollectionViewCell.swift */; };
+		DD3C424C1E75214A00E41A84 /* UserCollectionDataAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C424B1E75214A00E41A84 /* UserCollectionDataAndDelegate.swift */; };
+		DD3C424E1E7ED28400E41A84 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C424D1E7ED28400E41A84 /* AvatarView.swift */; };
+		DD504F3E1DCC49FA00BD3B58 /* GroupHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F3D1DCC49FA00BD3B58 /* GroupHelper.swift */; };
+		DD504F411DCC50B900BD3B58 /* ConnectionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F401DCC50B900BD3B58 /* ConnectionsHelper.swift */; };
+		DD504F431DCC674700BD3B58 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F421DCC674700BD3B58 /* UserHelper.swift */; };
+		DD504F471DCC6A1D00BD3B58 /* EventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F461DCC6A1D00BD3B58 /* EventHelper.swift */; };
+		DD504F491DCEF03100BD3B58 /* CommentsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F481DCEF03100BD3B58 /* CommentsHelper.swift */; };
+		DD504F4B1DCF076E00BD3B58 /* LoadingScreenControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F4A1DCF076E00BD3B58 /* LoadingScreenControllerViewController.swift */; };
+		DD504F4D1DCF086300BD3B58 /* CommonConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F4C1DCF086300BD3B58 /* CommonConstants.swift */; };
+		DD504F571DE04BCE00BD3B58 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD504F561DE04BCE00BD3B58 /* ConnectionCell.swift */; };
 		DD686B6F1D7E9686009A85B3 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B6E1D7E9686009A85B3 /* CoreDataHelper.swift */; };
 		DD686B721D83C19A009A85B3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B701D83C19A009A85B3 /* User.swift */; };
-		DD686B731D83C19A009A85B3 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B711D83C19A009A85B3 /* User+CoreDataProperties.swift */; };
 		DD686B761D83C1B2009A85B3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B741D83C1B2009A85B3 /* Event.swift */; };
-		DD686B771D83C1B2009A85B3 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B751D83C1B2009A85B3 /* Event+CoreDataProperties.swift */; };
 		DD686B7A1D83C1BC009A85B3 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B781D83C1BC009A85B3 /* Group.swift */; };
-		DD686B7B1D83C1BC009A85B3 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B791D83C1BC009A85B3 /* Group+CoreDataProperties.swift */; };
-		DD686B821D852043009A85B3 /* SubscriptionsAndGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B811D852043009A85B3 /* SubscriptionsAndGroupsViewController.swift */; };
-		DD686B841D853183009A85B3 /* SubAndGroupsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B831D853183009A85B3 /* SubAndGroupsTableCell.swift */; };
+		DD686B821D852043009A85B3 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD686B811D852043009A85B3 /* ConnectionsViewController.swift */; };
+		DD76B9191DC5BF9300F62F03 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD76B9181DC5BF9300F62F03 /* LoginViewController.swift */; };
+		DD8311E71DE173240014D3A0 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8311E61DE173240014D3A0 /* UserTableViewCell.swift */; };
+		DD8311E91DE175630014D3A0 /* UsersAndGroupsTableViewDataAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8311E81DE175630014D3A0 /* UsersAndGroupsTableViewDataAndDelegate.swift */; };
 		DD9017421DA0C831009214AA /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9017411DA0C831009214AA /* CreateEventViewController.swift */; };
 		DD9017441DBC890A009214AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD9017431DBC890A009214AA /* GoogleService-Info.plist */; };
-		DD9EC2801D8D16E500F31FBD /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9EC27F1D8D16E500F31FBD /* EditGroupViewController.swift */; };
+		DDA2D0861E2D580F00B9CC98 /* CreateEventDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2D0851E2D580F00B9CC98 /* CreateEventDateViewController.swift */; };
+		DDD1840C1E6C09AB00F29236 /* BottomBtnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1840B1E6C09AA00F29236 /* BottomBtnsViewController.swift */; };
+		DDD1840E1E6CA0B900F29236 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1840D1E6CA0B900F29236 /* BottomButton.swift */; };
+		DDF6CB9F1DEB45A3003F6C54 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF6CB9E1DEB45A3003F6C54 /* Comments.swift */; };
+		DDF6CBA11DEB4832003F6C54 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF6CBA01DEB4832003F6C54 /* Comment.swift */; };
+		DDF6CBA41DFD904C003F6C54 /* InviteSocialFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF6CBA31DFD904C003F6C54 /* InviteSocialFriendsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,37 +85,56 @@
 		844D4C4F1D57421E00039352 /* GoPartyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoPartyTableViewController.swift; sourceTree = "<group>"; };
 		84F1EFF81D64B458008C3376 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		A939B34AD83B8D76C777394F /* Pods-GoPatry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPatry.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoPatry/Pods-GoPatry.release.xcconfig"; sourceTree = "<group>"; };
+		DD0273FB1EAC80900038B98F /* CreateViewTitleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewTitleItem.swift; sourceTree = "<group>"; };
+		DD0274011EBECFF30038B98F /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		DD0274031EBED15B0038B98F /* GroupViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewCell.swift; sourceTree = "<group>"; };
+		DD0274051EBED6480038B98F /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		DD0274071EBEDEF20038B98F /* SelectPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeopleViewController.swift; sourceTree = "<group>"; };
+		DD0274091EBEE65E0038B98F /* AvatarCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarCollectionCell.swift; sourceTree = "<group>"; };
+		DD02740B1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersCollectionViewDelegateAndDataSource.swift; sourceTree = "<group>"; };
+		DD11796B1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventGroupViewCell.swift; sourceTree = "<group>"; };
+		DD159CB81E3C587100A056FE /* DebugLoggerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLoggerHelper.swift; sourceTree = "<group>"; };
+		DD159CBA1E506BB100A056FE /* CreateEventTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTypeViewController.swift; sourceTree = "<group>"; };
 		DD1F03A61D7A97D200211CAB /* GoPartyServerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoPartyServerModel.xcdatamodel; sourceTree = "<group>"; };
 		DD1F03CB1D7BE60B00211CAB /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		DD1F03CD1D7BECC100211CAB /* FakeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
-		DD3AE5001D963D57008F8DC2 /* SelectedStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedStatusViewController.swift; sourceTree = "<group>"; };
-		DD3AE5021D9645EB008F8DC2 /* SelectedStatusTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedStatusTableCell.swift; sourceTree = "<group>"; };
 		DD3AE5061D97D58F008F8DC2 /* CreateEventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventMapViewController.swift; sourceTree = "<group>"; };
 		DD3AE50B1D97E529008F8DC2 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = ../LocationManager.swift; sourceTree = "<group>"; };
 		DD3AE50D1D9BB9A1008F8DC2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		DD3AE50F1D9BC1C5008F8DC2 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		DD3AE5151D9E44AA008F8DC2 /* Connections+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Connections+CoreDataProperties.swift"; path = "../Connections+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD3AE5161D9E44AA008F8DC2 /* Connections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Connections.swift; path = ../Connections.swift; sourceTree = "<group>"; };
-		DD3AE5191D9E5B12008F8DC2 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
-		DD3AE51B1D9F7763008F8DC2 /* FriendsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableCell.swift; sourceTree = "<group>"; };
+		DD3AE5191D9E5B12008F8DC2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DD3AE51D1D9F7C82008F8DC2 /* FacebookHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookHelper.swift; sourceTree = "<group>"; };
 		DD3AE51F1D9F8169008F8DC2 /* IconsStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsStorageManager.swift; sourceTree = "<group>"; };
-		DD3AE5211D9F9B42008F8DC2 /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+CoreDataProperties.swift"; path = "../Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DD3AE5221D9F9B42008F8DC2 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = ../Comment.swift; sourceTree = "<group>"; };
 		DD3AE5251D9FF03D008F8DC2 /* CommentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableCell.swift; sourceTree = "<group>"; };
 		DD3AE5271D9FF17A008F8DC2 /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
+		DD3C42491E751FC900E41A84 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD3C424B1E75214A00E41A84 /* UserCollectionDataAndDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionDataAndDelegate.swift; sourceTree = "<group>"; };
+		DD3C424D1E7ED28400E41A84 /* AvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		DD504F3D1DCC49FA00BD3B58 /* GroupHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHelper.swift; sourceTree = "<group>"; };
+		DD504F401DCC50B900BD3B58 /* ConnectionsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsHelper.swift; sourceTree = "<group>"; };
+		DD504F421DCC674700BD3B58 /* UserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
+		DD504F461DCC6A1D00BD3B58 /* EventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHelper.swift; sourceTree = "<group>"; };
+		DD504F481DCEF03100BD3B58 /* CommentsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsHelper.swift; sourceTree = "<group>"; };
+		DD504F4A1DCF076E00BD3B58 /* LoadingScreenControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreenControllerViewController.swift; sourceTree = "<group>"; };
+		DD504F4C1DCF086300BD3B58 /* CommonConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonConstants.swift; sourceTree = "<group>"; };
+		DD504F561DE04BCE00BD3B58 /* ConnectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
 		DD686B6E1D7E9686009A85B3 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		DD686B701D83C19A009A85B3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		DD686B711D83C19A009A85B3 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD686B741D83C1B2009A85B3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		DD686B751D83C1B2009A85B3 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD686B781D83C1BC009A85B3 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		DD686B791D83C1BC009A85B3 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DD686B811D852043009A85B3 /* SubscriptionsAndGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsAndGroupsViewController.swift; sourceTree = "<group>"; };
-		DD686B831D853183009A85B3 /* SubAndGroupsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubAndGroupsTableCell.swift; sourceTree = "<group>"; };
+		DD686B811D852043009A85B3 /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
+		DD76B9171DC5BCEC00F62F03 /* GoPatry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoPatry.entitlements; sourceTree = "<group>"; };
+		DD76B9181DC5BF9300F62F03 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "../../../Downloads/Grocr-final/Grocr/LoginViewController.swift"; sourceTree = "<group>"; };
+		DD8311E61DE173240014D3A0 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		DD8311E81DE175630014D3A0 /* UsersAndGroupsTableViewDataAndDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAndGroupsTableViewDataAndDelegate.swift; sourceTree = "<group>"; };
 		DD9017411DA0C831009214AA /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		DD9017431DBC890A009214AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DD9EC27F1D8D16E500F31FBD /* EditGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroupViewController.swift; sourceTree = "<group>"; };
+		DDA2D0851E2D580F00B9CC98 /* CreateEventDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventDateViewController.swift; sourceTree = "<group>"; };
+		DDD1840B1E6C09AA00F29236 /* BottomBtnsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBtnsViewController.swift; sourceTree = "<group>"; };
+		DDD1840D1E6CA0B900F29236 /* BottomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
+		DDF6CB9E1DEB45A3003F6C54 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		DDF6CBA01DEB4832003F6C54 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		DDF6CBA31DFD904C003F6C54 /* InviteSocialFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteSocialFriendsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,45 +189,19 @@
 		844D4C3C1D5741D200039352 /* GoPatry */ = {
 			isa = PBXGroup;
 			children = (
-				DD9017411DA0C831009214AA /* CreateEventViewController.swift */,
-				DD3AE5211D9F9B42008F8DC2 /* Comment+CoreDataProperties.swift */,
-				DD3AE5221D9F9B42008F8DC2 /* Comment.swift */,
-				DD3AE5151D9E44AA008F8DC2 /* Connections+CoreDataProperties.swift */,
-				DD3AE5161D9E44AA008F8DC2 /* Connections.swift */,
-				DD3AE50B1D97E529008F8DC2 /* LocationManager.swift */,
-				DD686B781D83C1BC009A85B3 /* Group.swift */,
-				DD686B791D83C1BC009A85B3 /* Group+CoreDataProperties.swift */,
-				DD686B741D83C1B2009A85B3 /* Event.swift */,
-				DD686B751D83C1B2009A85B3 /* Event+CoreDataProperties.swift */,
-				DD686B701D83C19A009A85B3 /* User.swift */,
-				DD686B711D83C19A009A85B3 /* User+CoreDataProperties.swift */,
-				842E794D1D6EDE9A00CC0092 /* Model.swift */,
-				DD1F03CB1D7BE60B00211CAB /* Enums.swift */,
-				DD1F03CD1D7BECC100211CAB /* FakeData.swift */,
-				DD686B6E1D7E9686009A85B3 /* CoreDataHelper.swift */,
+				DD76B9171DC5BCEC00F62F03 /* GoPatry.entitlements */,
+				DD504F3F1DCC4A2B00BD3B58 /* model */,
 				842E79481D6EC19900CC0092 /* Main.storyboard */,
-				DD3AE5251D9FF03D008F8DC2 /* CommentTableCell.swift */,
-				DD3AE51B1D9F7763008F8DC2 /* FriendsTableCell.swift */,
-				DD3AE5191D9E5B12008F8DC2 /* AddFriendsViewController.swift */,
-				DD3AE50F1D9BC1C5008F8DC2 /* AuthViewController.swift */,
-				DD3AE50D1D9BB9A1008F8DC2 /* MainTabBarController.swift */,
-				DD3AE5021D9645EB008F8DC2 /* SelectedStatusTableCell.swift */,
-				DD3AE5001D963D57008F8DC2 /* SelectedStatusViewController.swift */,
-				DD9EC27F1D8D16E500F31FBD /* EditGroupViewController.swift */,
-				DD686B811D852043009A85B3 /* SubscriptionsAndGroupsViewController.swift */,
+				DD8311EA1DE176B00014D3A0 /* startUp */,
+				DD504F4E1DE014F000BD3B58 /* createEventView */,
+				DD504F511DE023B000BD3B58 /* commentView */,
+				DD8311E51DE1729E0014D3A0 /* commonUI */,
+				DDF6CBA21DFD8FD1003F6C54 /* searchTab */,
+				DD504F501DE0235A00BD3B58 /* connectionsTab */,
 				DD1F03A51D7A97D200211CAB /* GoPartyServerModel.xcdatamodeld */,
-				843F04D21D72BEF600F288FA /* CreateEventPeopleViewController.swift */,
-				84F1EFF81D64B458008C3376 /* EventTableViewCell.swift */,
-				844D4C4F1D57421E00039352 /* GoPartyTableViewController.swift */,
-				DD3AE5271D9FF17A008F8DC2 /* CommentTableViewController.swift */,
-				DD3AE51F1D9F8169008F8DC2 /* IconsStorageManager.swift */,
+				DD504F4F1DE0232D00BD3B58 /* timelineView */,
 				844D4C441D5741D200039352 /* Assets.xcassets */,
-				DD686B831D853183009A85B3 /* SubAndGroupsTableCell.swift */,
-				841E6DF41D62EC7B00B70F8F /* EventDetailViewController.swift */,
 				84195DE91D69D0AD0053ADB8 /* SupportsFiles */,
-				842E794B1D6ECDB700CC0092 /* Utils.swift */,
-				DD3AE5061D97D58F008F8DC2 /* CreateEventMapViewController.swift */,
-				DD3AE51D1D9F7C82008F8DC2 /* FacebookHelper.swift */,
 			);
 			path = GoPatry;
 			sourceTree = "<group>";
@@ -202,6 +213,115 @@
 				A939B34AD83B8D76C777394F /* Pods-GoPatry.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DD504F3F1DCC4A2B00BD3B58 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				842E794B1D6ECDB700CC0092 /* Utils.swift */,
+				DD3AE51D1D9F7C82008F8DC2 /* FacebookHelper.swift */,
+				DDF6CB9E1DEB45A3003F6C54 /* Comments.swift */,
+				DDF6CBA01DEB4832003F6C54 /* Comment.swift */,
+				DD504F481DCEF03100BD3B58 /* CommentsHelper.swift */,
+				DD3AE5161D9E44AA008F8DC2 /* Connections.swift */,
+				DD504F401DCC50B900BD3B58 /* ConnectionsHelper.swift */,
+				DD686B6E1D7E9686009A85B3 /* CoreDataHelper.swift */,
+				DD686B741D83C1B2009A85B3 /* Event.swift */,
+				DD504F461DCC6A1D00BD3B58 /* EventHelper.swift */,
+				DD1F03CD1D7BECC100211CAB /* FakeData.swift */,
+				DD686B781D83C1BC009A85B3 /* Group.swift */,
+				DD504F3D1DCC49FA00BD3B58 /* GroupHelper.swift */,
+				DD3AE50B1D97E529008F8DC2 /* LocationManager.swift */,
+				842E794D1D6EDE9A00CC0092 /* Model.swift */,
+				DD686B701D83C19A009A85B3 /* User.swift */,
+				DD504F421DCC674700BD3B58 /* UserHelper.swift */,
+				DD504F4C1DCF086300BD3B58 /* CommonConstants.swift */,
+				DD3AE51F1D9F8169008F8DC2 /* IconsStorageManager.swift */,
+				DD1F03CB1D7BE60B00211CAB /* Enums.swift */,
+				DD159CB81E3C587100A056FE /* DebugLoggerHelper.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		DD504F4E1DE014F000BD3B58 /* createEventView */ = {
+			isa = PBXGroup;
+			children = (
+				DD9017411DA0C831009214AA /* CreateEventViewController.swift */,
+				843F04D21D72BEF600F288FA /* CreateEventPeopleViewController.swift */,
+				DD3AE5061D97D58F008F8DC2 /* CreateEventMapViewController.swift */,
+				DDA2D0851E2D580F00B9CC98 /* CreateEventDateViewController.swift */,
+				DD159CBA1E506BB100A056FE /* CreateEventTypeViewController.swift */,
+				DD0273FB1EAC80900038B98F /* CreateViewTitleItem.swift */,
+				DD11796B1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift */,
+			);
+			name = createEventView;
+			sourceTree = "<group>";
+		};
+		DD504F4F1DE0232D00BD3B58 /* timelineView */ = {
+			isa = PBXGroup;
+			children = (
+				DD3AE50D1D9BB9A1008F8DC2 /* MainTabBarController.swift */,
+				84F1EFF81D64B458008C3376 /* EventTableViewCell.swift */,
+				844D4C4F1D57421E00039352 /* GoPartyTableViewController.swift */,
+				841E6DF41D62EC7B00B70F8F /* EventDetailViewController.swift */,
+				DDD1840B1E6C09AA00F29236 /* BottomBtnsViewController.swift */,
+				DDD1840D1E6CA0B900F29236 /* BottomButton.swift */,
+			);
+			name = timelineView;
+			sourceTree = "<group>";
+		};
+		DD504F501DE0235A00BD3B58 /* connectionsTab */ = {
+			isa = PBXGroup;
+			children = (
+				DD686B811D852043009A85B3 /* ConnectionsViewController.swift */,
+				DD504F561DE04BCE00BD3B58 /* ConnectionCell.swift */,
+				DD0274011EBECFF30038B98F /* GroupsViewController.swift */,
+				DD0274031EBED15B0038B98F /* GroupViewCell.swift */,
+				DD0274051EBED6480038B98F /* CreateGroupViewController.swift */,
+			);
+			name = connectionsTab;
+			sourceTree = "<group>";
+		};
+		DD504F511DE023B000BD3B58 /* commentView */ = {
+			isa = PBXGroup;
+			children = (
+				DD3AE5251D9FF03D008F8DC2 /* CommentTableCell.swift */,
+				DD3AE5271D9FF17A008F8DC2 /* CommentTableViewController.swift */,
+			);
+			name = commentView;
+			sourceTree = "<group>";
+		};
+		DD8311E51DE1729E0014D3A0 /* commonUI */ = {
+			isa = PBXGroup;
+			children = (
+				DD8311E61DE173240014D3A0 /* UserTableViewCell.swift */,
+				DD8311E81DE175630014D3A0 /* UsersAndGroupsTableViewDataAndDelegate.swift */,
+				DD3C42491E751FC900E41A84 /* UserCollectionViewCell.swift */,
+				DD3C424B1E75214A00E41A84 /* UserCollectionDataAndDelegate.swift */,
+				DD3C424D1E7ED28400E41A84 /* AvatarView.swift */,
+				DD0274091EBEE65E0038B98F /* AvatarCollectionCell.swift */,
+				DD0274071EBEDEF20038B98F /* SelectPeopleViewController.swift */,
+				DD02740B1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift */,
+			);
+			name = commonUI;
+			sourceTree = "<group>";
+		};
+		DD8311EA1DE176B00014D3A0 /* startUp */ = {
+			isa = PBXGroup;
+			children = (
+				DD76B9181DC5BF9300F62F03 /* LoginViewController.swift */,
+				DD504F4A1DCF076E00BD3B58 /* LoadingScreenControllerViewController.swift */,
+			);
+			name = startUp;
+			sourceTree = "<group>";
+		};
+		DDF6CBA21DFD8FD1003F6C54 /* searchTab */ = {
+			isa = PBXGroup;
+			children = (
+				DD3AE5191D9E5B12008F8DC2 /* SearchViewController.swift */,
+				DDF6CBA31DFD904C003F6C54 /* InviteSocialFriendsViewController.swift */,
+			);
+			name = searchTab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +337,7 @@
 				844D4C381D5741D200039352 /* Resources */,
 				75C62FBF8DA74B5806D00190 /* [CP] Embed Pods Frameworks */,
 				19613EC07F9D8E7D46B28638 /* [CP] Copy Pods Resources */,
+				DDA2D0871E348DA300B9CC98 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -239,6 +360,14 @@
 				TargetAttributes = {
 					844D4C391D5741D200039352 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 29QE9LBN5F;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -320,6 +449,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoPatry/Pods-GoPatry-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DDA2D0871E348DA300B9CC98 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "GOOGLE_APP_ID=1:739746017944:ios:d03c2fefc70a1dae\n\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym /Users/karnovskiy/Desktop/SwiftProjects/GoPatry/ServiceAccount.json";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -327,43 +469,61 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3AE51C1D9F7764008F8DC2 /* FriendsTableCell.swift in Sources */,
-				DD686B771D83C1B2009A85B3 /* Event+CoreDataProperties.swift in Sources */,
+				DD504F491DCEF03100BD3B58 /* CommentsHelper.swift in Sources */,
 				DD3AE5281D9FF17A008F8DC2 /* CommentTableViewController.swift in Sources */,
-				DD3AE5171D9E44AA008F8DC2 /* Connections+CoreDataProperties.swift in Sources */,
+				DD76B9191DC5BF9300F62F03 /* LoginViewController.swift in Sources */,
+				DD8311E71DE173240014D3A0 /* UserTableViewCell.swift in Sources */,
 				DD9017421DA0C831009214AA /* CreateEventViewController.swift in Sources */,
+				DD02740C1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift in Sources */,
 				DD1F03CE1D7BECC100211CAB /* FakeData.swift in Sources */,
-				DD686B841D853183009A85B3 /* SubAndGroupsTableCell.swift in Sources */,
 				DD3AE5181D9E44AA008F8DC2 /* Connections.swift in Sources */,
 				84F1EFF91D64B458008C3376 /* EventTableViewCell.swift in Sources */,
-				DD3AE51A1D9E5B12008F8DC2 /* AddFriendsViewController.swift in Sources */,
+				DD0274081EBEDEF20038B98F /* SelectPeopleViewController.swift in Sources */,
+				DDF6CBA11DEB4832003F6C54 /* Comment.swift in Sources */,
+				DD159CB91E3C587100A056FE /* DebugLoggerHelper.swift in Sources */,
+				DDA2D0861E2D580F00B9CC98 /* CreateEventDateViewController.swift in Sources */,
+				DD0274041EBED15B0038B98F /* GroupViewCell.swift in Sources */,
+				DD3AE51A1D9E5B12008F8DC2 /* SearchViewController.swift in Sources */,
+				DDD1840C1E6C09AB00F29236 /* BottomBtnsViewController.swift in Sources */,
 				DD686B7A1D83C1BC009A85B3 /* Group.swift in Sources */,
+				DD3C424C1E75214A00E41A84 /* UserCollectionDataAndDelegate.swift in Sources */,
+				DD504F4B1DCF076E00BD3B58 /* LoadingScreenControllerViewController.swift in Sources */,
 				DD3AE51E1D9F7C82008F8DC2 /* FacebookHelper.swift in Sources */,
-				DD3AE5241D9F9B42008F8DC2 /* Comment.swift in Sources */,
+				DD504F4D1DCF086300BD3B58 /* CommonConstants.swift in Sources */,
+				DD504F3E1DCC49FA00BD3B58 /* GroupHelper.swift in Sources */,
 				844D4C501D57421E00039352 /* GoPartyTableViewController.swift in Sources */,
-				DD3AE5101D9BC1C5008F8DC2 /* AuthViewController.swift in Sources */,
 				DD1F03CC1D7BE60B00211CAB /* Enums.swift in Sources */,
 				DD3AE50C1D97E529008F8DC2 /* LocationManager.swift in Sources */,
 				841E6DF51D62EC7B00B70F8F /* EventDetailViewController.swift in Sources */,
+				DD0273FC1EAC80900038B98F /* CreateViewTitleItem.swift in Sources */,
+				DD0274021EBECFF30038B98F /* GroupsViewController.swift in Sources */,
+				DD504F411DCC50B900BD3B58 /* ConnectionsHelper.swift in Sources */,
+				DDF6CBA41DFD904C003F6C54 /* InviteSocialFriendsViewController.swift in Sources */,
 				DD3AE50E1D9BB9A1008F8DC2 /* MainTabBarController.swift in Sources */,
 				843F04D31D72BEF600F288FA /* CreateEventPeopleViewController.swift in Sources */,
 				DD3AE5071D97D58F008F8DC2 /* CreateEventMapViewController.swift in Sources */,
-				DD3AE5231D9F9B42008F8DC2 /* Comment+CoreDataProperties.swift in Sources */,
-				DD9EC2801D8D16E500F31FBD /* EditGroupViewController.swift in Sources */,
 				DD3AE5201D9F8169008F8DC2 /* IconsStorageManager.swift in Sources */,
-				DD686B7B1D83C1BC009A85B3 /* Group+CoreDataProperties.swift in Sources */,
+				DD159CBB1E506BB100A056FE /* CreateEventTypeViewController.swift in Sources */,
+				DD0274061EBED6480038B98F /* CreateGroupViewController.swift in Sources */,
+				DDD1840E1E6CA0B900F29236 /* BottomButton.swift in Sources */,
 				842E794E1D6EDE9A00CC0092 /* Model.swift in Sources */,
-				DD3AE5031D9645EB008F8DC2 /* SelectedStatusTableCell.swift in Sources */,
+				DD3C424E1E7ED28400E41A84 /* AvatarView.swift in Sources */,
+				DD02740A1EBEE65E0038B98F /* AvatarCollectionCell.swift in Sources */,
+				DD504F571DE04BCE00BD3B58 /* ConnectionCell.swift in Sources */,
 				DD1F03A71D7A97D200211CAB /* GoPartyServerModel.xcdatamodeld in Sources */,
-				DD3AE5011D963D57008F8DC2 /* SelectedStatusViewController.swift in Sources */,
 				DD3AE5261D9FF03D008F8DC2 /* CommentTableCell.swift in Sources */,
 				DD686B721D83C19A009A85B3 /* User.swift in Sources */,
+				DDF6CB9F1DEB45A3003F6C54 /* Comments.swift in Sources */,
+				DD504F471DCC6A1D00BD3B58 /* EventHelper.swift in Sources */,
 				DD686B6F1D7E9686009A85B3 /* CoreDataHelper.swift in Sources */,
-				DD686B821D852043009A85B3 /* SubscriptionsAndGroupsViewController.swift in Sources */,
-				DD686B731D83C19A009A85B3 /* User+CoreDataProperties.swift in Sources */,
+				DD504F431DCC674700BD3B58 /* UserHelper.swift in Sources */,
+				DD686B821D852043009A85B3 /* ConnectionsViewController.swift in Sources */,
 				844D4C3E1D5741D200039352 /* AppDelegate.swift in Sources */,
 				DD686B761D83C1B2009A85B3 /* Event.swift in Sources */,
+				DD3C424A1E751FC900E41A84 /* UserCollectionViewCell.swift in Sources */,
 				842E794C1D6ECDB700CC0092 /* Utils.swift in Sources */,
+				DD8311E91DE175630014D3A0 /* UsersAndGroupsTableViewDataAndDelegate.swift in Sources */,
+				DD11796C1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -466,7 +626,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -480,14 +640,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = GoPatry/GoPatry.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 29QE9LBN5F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookCore",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookLogin",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookShare",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKLoginKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKShareKit",
+				);
 				INFOPLIST_FILE = GoPatry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.countdown.GoPatryTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -497,13 +668,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = GoPatry/GoPatry.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 29QE9LBN5F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookCore",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookLogin",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookShare",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKLoginKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKShareKit",
+				);
 				INFOPLIST_FILE = GoPatry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.countdown.GoPatryTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

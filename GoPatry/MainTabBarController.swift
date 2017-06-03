@@ -10,15 +10,21 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
         
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        if Model.getInstance().isAuthNeed {
-            let login = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("auth") as! AuthViewController
-            self.presentViewController(login, animated: animated, completion: nil)
+        if Model.TheModel.isAuthNeed {
+            let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "auth") as? LoginViewController
+            self.present( loginView!, animated: animated, completion: nil )
         }
-    }
+        
+        if let items = self.tabBar.items
+        {
+            if let image = items[2].image
+            {
+                items[2].image = image.withRenderingMode( .alwaysOriginal )
+            }
+        }
+   }
+    
+    
 }

@@ -35,13 +35,48 @@ enum AvailableCategories: Int {
         return self.init(rawValue: rand)!
     }
     
-    static let textValues = [NONE:"NONE",JOB:"JOB",GAME:"GAME",CHILL:"CHILL",OTHER:"OTHER"]
+    static let textItems = [NONE:"NONE",JOB:"JOB",GAME:"GAME",CHILL:"CHILL",OTHER:"OTHER"]
+    static let textValues = ["NONE","JOB","GAME","CHILL","OTHER"]
+    
+    func getTextValue() -> String {
+        return AvailableCategories.textItems[self]!
+    }
+    
+    static func getTextValues() -> [String] {
+        return Array( textValues )
+    }
+    
+    static func getValueFromWord( _ word: String ) -> AvailableCategories {
+        for (key,value) in textItems {
+            if value == word {
+                return key
+            }
+        }
+        
+        return .NONE
+    }
+}
+
+enum CreateEventItemsKeys: Int {
+    case NONE = -1, NAME, DESCRIPTION, DATE, LOCATION, CATEGORY, INVITE
+    
+    static let values = [NAME, DESCRIPTION, DATE, LOCATION, CATEGORY, INVITE]
+    static let textValues = [NAME:"Название",
+                             DESCRIPTION:"Описание",
+                             DATE:"Дата проведения",
+                             LOCATION:"Место проведения",
+                             CATEGORY:"Тип события",
+                             INVITE:"Пригласить друзей"]
+    
+    func getTextValue() -> String {
+        return CreateEventItemsKeys.textValues[self]!
+    }
     
     static func getTextValues() -> [String] {
         return Array( textValues.values )
     }
     
-    static func getValueFromWord( word: String ) -> AvailableCategories {
+    static func getValueFromWord( _ word: String ) -> CreateEventItemsKeys {
         for (key,value) in textValues {
             if value == word {
                 return key
@@ -53,15 +88,15 @@ enum AvailableCategories: Int {
 }
 
 enum AvailableUIType: Int {
-    case FRIENDS = 0, GROUPS
+    case USERS = 0, GROUPS
 }
 
-private let categoriesColors = [AvailableCategories.NONE:UIColor.whiteColor(),
+private let categoriesColors = [AvailableCategories.NONE:UIColor.white,
                                 AvailableCategories.JOB:UIColor.init(red: 255/255.0, green: 178/255.0, blue: 129/255.0, alpha: 255/255.0),
-                                AvailableCategories.GAME:UIColor.greenColor(),
+                                AvailableCategories.GAME:UIColor.green,
                                 AvailableCategories.CHILL:UIColor.init(red: 7/255.0, green: 255/255.0, blue: 250/255.0, alpha: 255/255.0),
                                 AvailableCategories.OTHER:UIColor.init(red: 223/255.0, green: 223/255.0, blue: 223/255.0, alpha: 255/255.0)]
 
-func getCategoriesColor(category: AvailableCategories) -> UIColor{
+func getCategoriesColor(_ category: AvailableCategories) -> UIColor{
     return categoriesColors[category]!
 }

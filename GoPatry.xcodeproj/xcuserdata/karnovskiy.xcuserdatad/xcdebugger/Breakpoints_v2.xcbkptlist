@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Utils.swift"
-            timestampString = "497129886.814691"
+            timestampString = "510402994.840586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "objectToString(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,61 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Utils.swift"
-            timestampString = "497129886.814691"
+            timestampString = "510402994.840586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "objectToString(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
-            landmarkName = "createFakeGroups()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
-            landmarkName = "createFakeConnections()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
-            landmarkName = "getNSUserDefaultsUser()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,7 +64,7 @@
             startingLineNumber = "32"
             endingLineNumber = "32"
             landmarkName = "awakeFromNib()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/SubAndGroupsTableCell.swift"
-            timestampString = "495863803.099784"
+            timestampString = "501231180.064782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "SubAndGroupsTableCell"
             landmarkType = "3">
          </BreakpointContent>
@@ -138,27 +90,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/SubAndGroupsTableCell.swift"
-            timestampString = "495863803.099784"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "btnLeftClick()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubAndGroupsTableCell.swift"
-            timestampString = "495863803.099784"
+            timestampString = "501231180.064782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
+            landmarkName = "btnLeftClick()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoPatry/SubAndGroupsTableCell.swift"
+            timestampString = "501231180.064782"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "SubAndGroupsTableCell"
             landmarkType = "3">
          </BreakpointContent>
@@ -170,157 +122,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/SubAndGroupsTableCell.swift"
-            timestampString = "495863803.099784"
+            timestampString = "501231180.064782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "updateBtns()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "getNSUserDefaultsUser()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "458"
-            endingLineNumber = "458"
-            landmarkName = "getSetFakeUid(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoPatry.Model.((getSetFakeUid in _4D8E461BFDD6FC466B779B631F3FC140) (Swift.Int) -&gt; Swift.String).(default argument 0)"
-                  moduleName = "GoPatry"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/Model.swift"
-                  timestampString = "496913902.847948"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "275"
-                  endingLineNumber = "275"
-                  offsetFromSymbolStart = "5">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoPatry.Model.(getSetFakeUid in _4D8E461BFDD6FC466B779B631F3FC140) (Swift.Int) -&gt; Swift.String"
-                  moduleName = "GoPatry"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/Model.swift"
-                  timestampString = "496913902.848095"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495874603.654188"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495874603.654188"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495865160.769203"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495865160.769203"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495874603.654188"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "tableView(_:willSelectRowAtIndexPath:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -330,13 +138,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EditGroupViewController.swift"
-            timestampString = "495798737.988961"
+            timestampString = "501924957.057648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -346,13 +154,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EditGroupViewController.swift"
-            timestampString = "495869147.589292"
+            timestampString = "501924957.057648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "viewWillDisappear(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -394,29 +202,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EditGroupViewController.swift"
-            timestampString = "495869147.589292"
+            timestampString = "501924957.057648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "viewWillDisappear(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "saveOrCreateGroup(oldGroupName:newGroupName:membersUIDs:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -426,13 +218,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EditGroupViewController.swift"
-            timestampString = "495869147.589292"
+            timestampString = "501924957.057648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "viewWillDisappear(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -442,29 +234,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/SubAndGroupsTableCell.swift"
-            timestampString = "495864266.261488"
+            timestampString = "501231180.064782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495874603.654188"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -474,93 +250,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EventDetailViewController.swift"
-            timestampString = "497125219.901442"
+            timestampString = "518168691.730493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "setUserLists(accepted:refused:doubters:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/EventDetailViewController.swift"
-            timestampString = "497125219.901442"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "toggleType(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495874603.654188"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "tableView(_:willSelectRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/SubscriptionsAndGroupsViewController.swift"
-            timestampString = "495874648.445857"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "tableView(_:willSelectRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/EventDetailViewController.swift"
-            timestampString = "497125219.901442"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "didSelectStatus(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/GoPartyTableViewController.swift"
-            timestampString = "497121023.814369"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -570,13 +266,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EventTableViewCell.swift"
-            timestampString = "496400534.669386"
+            timestampString = "518165948.297373"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "setEventData(_:)"
-            landmarkType = "5">
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "setData(_:showCommentsCallback:onSelectedListCallback:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -586,13 +282,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Event.swift"
-            timestampString = "496914182.396697"
+            timestampString = "511612774.441719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "getLocation()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -634,29 +330,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/GoPartyTableViewController.swift"
-            timestampString = "497129282.150875"
+            timestampString = "518163739.525712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
-            landmarkName = "createFakeEvents()"
-            landmarkType = "5">
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -666,157 +346,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/MainTabBarController.swift"
-            timestampString = "496748041.683305"
+            timestampString = "511719606.074574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "viewDidAppear(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Event.swift"
-            timestampString = "496914182.396697"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "setCurrentStatusAnsSave(newStatus:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/CreateEventPeopleViewController.swift"
-            timestampString = "497083166.517214"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/CreateEventPeopleViewController.swift"
-            timestampString = "497083166.517214"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/IconsStorageManager.swift"
-            timestampString = "496997320.279645"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "getIconByUrl(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/CommentTableViewController.swift"
-            timestampString = "497021968.574735"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/GoPartyTableViewController.swift"
-            timestampString = "497129282.150875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/CommentTableViewController.swift"
-            timestampString = "497023867.862749"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/CommentTableViewController.swift"
-            timestampString = "497023996.674525"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/CreateEventViewController.swift"
-            timestampString = "497130134.195296"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "createBtn(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -832,215 +368,7 @@
             startingLineNumber = "80"
             endingLineNumber = "80"
             landmarkName = "save()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
-            landmarkName = "createFakeConnections()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "init()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoPatry.Model.init () -&gt; GoPatry.Model"
-                  moduleName = "GoPatry"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/Model.swift"
-                  timestampString = "497119831.813766"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "222">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoPatry.Model.init () -&gt; GoPatry.Model"
-                  moduleName = "GoPatry"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/Model.swift"
-                  timestampString = "497119831.813917"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "252">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "createFakeUsers()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
-            landmarkName = "createFakeUsers()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
-            landmarkName = "createFakeUsers()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "390"
-            endingLineNumber = "390"
-            landmarkName = "createFakeUsers()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "setCurrentUser(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "continueLoading()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "getNSUserDefaultsUser()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "fetchingData()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "fetchingData()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1050,61 +378,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/GoPartyTableViewController.swift"
-            timestampString = "497129282.150875"
+            timestampString = "512108486.024043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/GoPartyTableViewController.swift"
-            timestampString = "497129282.150875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
-            landmarkName = "getEvents()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoPatry/Model.swift"
-            timestampString = "499159300.361179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "continueLoading()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

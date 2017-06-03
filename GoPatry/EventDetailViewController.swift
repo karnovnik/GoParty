@@ -8,146 +8,261 @@
 
 import UIKit
 
-class EventDetailViewController: UIViewController {//, PopoverDelegate {
+class EventDetailViewController: UIViewController {
 
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventDescr: UILabel!
     @IBOutlet weak var eventTime: UILabel!
-    @IBOutlet weak var ownerIcon: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var statusBtn: UIButton!
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var ownerIcon: AvatarView!
+    @IBOutlet weak var ownerName: UILabel!
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var bottomView: UIView!
     
-    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var listDescrPart1: UILabel!
     
-    var event:      Event?
-    var titleValue: String?
-    var descrValue: String?
-    var timeValue:  String?
-    var iconImage:  UIImage?
-    var usersLists = [ListType:[User]]()
-    var currentList = ListType.ACCEPT
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    var dataAndDelegate: PeopleTableViewDataAndDelegate!
+    var event: Event?
+    
+    var usersLists = [AvailableUserStatus:[User]]()
+    var currentUserListType = AvailableUserStatus.ACCEPT
+    
+    var dataAndDelegate = UserCollectionDataAndDelegate()
+    fileprivate var btnViewController: BottomBtnsViewController!
     
     var deleteCallback: ((Event)->Void)?
     
-    enum ListType: Int {
-        case DOUBT, ACCEPT, REFUSED
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eventTitle?.text = event?.title
+        eventDescr?.text = event?.descrition
+        ownerName?.text = event?.eventOwner?.nik
+        location?.text = event?.event_location
+        ownerIcon?.setData( url: event?.eventOwner?.photo_url ?? "" )
 
-        eventTitle?.text = titleValue
-        eventDescr?.text = descrValue
-        eventTime?.text = timeValue
-        ownerIcon?.image = iconImage
+        var eventT = ""
+        var eventD = ""
+        Utils.getDatePart(date: (event?.time!)!, outDate: &eventD, outTime: &eventT  )
         
-        statusBtn.setImage( statusImages[event!.getCurrentStatus()]!, forState: .Normal )
+        eventTime?.text = eventT
+        eventDate?.text = eventD
         
-        dataAndDelegate = PeopleTableViewDataAndDelegate()
-        dataAndDelegate.usersList = usersLists[currentList]!
-        dataAndDelegate.isNeedToAlignment = true
-        dataAndDelegate.cellTextAlignment = NSTextAlignment.Center
+        Model.TheModel.addListener(name: "EventDetailViewController", listener: eventHandler )
         
-        tableView.dataSource = dataAndDelegate!
-        tableView.delegate = dataAndDelegate!
-                
-        tableView.tableFooterView = UIView()
+        currentUserListType = .ACCEPT
+        updateUsersLists()
         
-        statusBtn.addTarget(self, action:#selector(EventDetailViewController.btnStatusClick), forControlEvents:UIControlEvents.TouchUpInside)
+        setupNavigationItem()
         
-        deleteBtn.hidden = !(event?.owner_uid == Model.getInstance().currentUser.uid)
-        deleteBtn.addTarget(self, action:#selector(EventDetailViewController.devDeleteBtn), forControlEvents:UIControlEvents.TouchUpInside)
+        collectionView.dataSource = dataAndDelegate
+        collectionView.delegate = dataAndDelegate
+        
+        setupBottomView()
     }
     
-    func setCurrentEvent( event: Event ) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        btnViewController.updateCounts()
+    }
+    func eventHandler( eventType: String ) {
+        
+        if eventType == EVENT_UPDATE {
+            updateUsersLists()
+            collectionView.reloadData()
+        }
+    }
+    
+    func updateUsersLists() {
+        usersLists[.ACCEPT] = Model.TheModel.getUsersBy( uidsList: (event?.accepted)!, withCurrent: true )//FakeData.getFakeUsers()
+        usersLists[.REFUSE] = Model.TheModel.getUsersBy( uidsList: (event?.refused)!, withCurrent: true )//FakeData.getFakeUsers()
+        usersLists[.DOUBT] = Model.TheModel.getUsersBy( uidsList: (event?.doubters)!, withCurrent: true )//FakeData.getFakeUsers()
+        
+        dataAndDelegate.usersList = usersLists[currentUserListType]!
+        updateUserListTitle( status: currentUserListType )
+        
+    }
+    
+    func onRightBtnClick( _ sender: AnyObject ) {
+        if event?.owner_uid == Model.TheModel.currentUser.uid {
+            showDeleteAlert()
+        } else {
+            showChangeStatusAlert()
+        }
+    }
+    
+    func setCurrentEvent( _ event: Event ) {
         
         self.event = event
-        titleValue = event.title
-        descrValue = event.descrition
-        timeValue = event.time!.description
-        
-        setUserLists( accepted: event.accepted_uids,
-                                            refused: event.refused_uids,
-                                            doubters: event.doubters_uids)
     }
     
-    func setUserLists( accepted accepted: [String], refused: [String], doubters: [String] ) {
-        
-        usersLists[ListType.ACCEPT] = Model.getInstance().getUsersBy( uidsList: accepted )
-        usersLists[ListType.REFUSED] = Model.getInstance().getUsersBy( uidsList: refused )
-        usersLists[ListType.DOUBT] = Model.getInstance().getUsersBy( uidsList: doubters )
-    }
-
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func toggleType(sender: AnyObject) {
-        currentList = ListType.init(rawValue: sender.selectedSegmentIndex)!
-        print("currentList \(currentList)")
-        dataAndDelegate.usersList = usersLists[currentList]!
-        tableView.reloadData()
+    func onSelectedListCallback( eventKey: String, newStatus: AvailableUserStatus ) {
+        
+        currentUserListType = newStatus
+        dataAndDelegate.usersList = usersLists[currentUserListType]!
+        updateUserListTitle( status: currentUserListType)
+        collectionView.reloadData()
     }
     
-    func btnStatusClick( ) {
+    func updateUserListTitle( status: AvailableUserStatus ) {
+        if event != nil {
+            
+            switch status{
+            case .ACCEPT:
+                if event!.accepted.contains( Model.TheModel.currentUser.uid ) {
+                    if event!.accepted.count == 1 {
+                        listDescrPart1.text = "Только вы идете на это событие"
+                    } else {
+                        listDescrPart1.text = "Вы и еще \(event!.accepted.count - 1) идут на это событие"
+                    }
+                } else {
+                    listDescrPart1.text = "\(event!.accepted.count) идут на это событие"
+                }
+            case .DOUBT:
+                if event!.doubters.contains( Model.TheModel.currentUser.uid ) {
+                    if event!.doubters.count == 1 {
+                        listDescrPart1.text = "Только вы еще сомневаетесь"
+                    } else {
+                        listDescrPart1.text = "Вы и еще \(event!.doubters.count - 1) сомневаются"
+                    }
+                } else {
+                    listDescrPart1.text = "\(event!.doubters.count) в сомневаются"
+                }
+            case .REFUSE:
+                if event!.refused.contains( Model.TheModel.currentUser.uid ) {
+                    if event!.refused.count == 1 {
+                        listDescrPart1.text = "Только вы не идете на это событие"
+                    } else {
+                        listDescrPart1.text = "Вы и еще \(event!.refused.count - 1) не идут на это событие"
+                    }
+                } else {
+                    listDescrPart1.text = "\(event!.refused.count) не идут на это событие"
+                }
+            default: print("switch pass")
+            }
+        }
+    }
+    
+    func showChangeStatusAlert( ) {
         let alertController = UIAlertController(title: "Select Status", message:
-            "", preferredStyle: UIAlertControllerStyle.Alert)
+            "", preferredStyle: UIAlertControllerStyle.alert)
         
         let none = UIAlertAction(title: "None",
-                                       style: .Default) { (action: UIAlertAction!) -> Void in
+                                       style: .default) { (action: UIAlertAction!) -> Void in
                                         
-                                        self.didSelectStatus( .NONE )
+                                       self.didSelectStatus( .NONE )
         }
         //none.setValue(statusImagesLists[0]!, forKey: "image")
         
         let accept = UIAlertAction(title: "Accept",
-                                 style: .Default) { (action: UIAlertAction!) -> Void in
+                                 style: .default) { (action: UIAlertAction!) -> Void in
                                 
                                     self.didSelectStatus( .ACCEPT )
         }
         //accept.setValue(statusImagesLists[1]!, forKey: "image")
         
         let refuse = UIAlertAction(title: "Refuse",
-                                   style: .Default) { (action: UIAlertAction!) -> Void in
+                                   style: .default) { (action: UIAlertAction!) -> Void in
                                     
                                     self.didSelectStatus( .REFUSE )
         }
         //refuse.setValue(statusImagesLists[2]!, forKey: "image")
         
         let doubt = UIAlertAction(title: "Doubt",
-                                   style: .Default) { (action: UIAlertAction!) -> Void in
+                                   style: .default) { (action: UIAlertAction!) -> Void in
                                     
                                     self.didSelectStatus( .DOUBT )
         }
         //doubt.setValue(statusImagesLists[3]!, forKey: "image")
     
-        
-        alertController.addAction(none)
         alertController.addAction(accept)
         alertController.addAction(refuse)
         alertController.addAction(doubt)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
+        alertController.addAction(none)
+                
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func didSelectStatus( newStatus: AvailableUserStatus ) {
+    func didSelectStatus( _ newStatus: AvailableUserStatus ) {
         print( newStatus )
-        statusBtn.setImage( statusImages[newStatus]!, forState: .Normal )
-        event?.setCurrentStatusAnsSave( newStatus: newStatus )
+        
+        event?.setCurrentStatusAndSave( newStatus: newStatus )
+        
+        btnViewController.updateCounts()
+        updateUserListTitle( status: newStatus )
     }
     
-    @IBAction func devDeleteBtn(sender: AnyObject) {
+    func showDeleteAlert() {
         
-        deleteCallback!( event! )
+        let message = ( event?.owner_uid == Model.TheModel.currentUser.uid ) ? "Event will be delete from server" : "Event will be delete from timeline"
+        let alertController = UIAlertController(title: "Deleting event", message:
+            message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let ok = UIAlertAction( title: "OK", style: .default ) { (action: UIAlertAction!) -> Void in
+                                    
+                                    self.deleteCallback!( self.event! )
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil )
+        
+        alertController.addAction(ok)
+        alertController.addAction(cancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        var rect = CGRect()
-//        rect.size = (sender as! UIButton).frame.size
-//        let popoverController = segue.destinationViewController as! SelectedStatusViewController
-//        popoverController.popoverPresentationController?.sourceRect = rect
-//        popoverController.delegate = self
-//    }
+    
+    func showCommentsView( eventKey: String ) {
+        
+        self.performSegue(withIdentifier: "ShowCommentViewSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowCommentViewSegue" {
+            if let destinController = segue.destination as? CommentTableViewController {
+                destinController.event_id = event?.key
+            }
+        }
+        
+        print("sender\(sender)")
+    }
+    
+    func setupNavigationItem() {
+        
+        let editImg = UIImage(named: "edit icon")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        let rightBarButtonItem = UIBarButtonItem(image: editImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( EventDetailViewController.onRightBtnClick ) )
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        let arrowBackImg = UIImage(named: "Back")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        let leftBarButtonItem = UIBarButtonItem(image: arrowBackImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( EventDetailViewController.popToRoot ))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : NAVIGATION_TITLE_COLOR ]
+    }
+    
+    func popToRoot( _ sender:UIBarButtonItem ) {
+        self.navigationController!.popToRootViewController(animated: true)
+    }
+    
+    func setupBottomView() {
+        
+        btnViewController = BottomBtnsViewController()
+        btnViewController.view = bottomView
+        btnViewController.withHandleCountBtn = true
+        btnViewController.showCommentsCallback = showCommentsView
+        btnViewController.onSelectedListCallback = onSelectedListCallback
+        btnViewController.createView()
+        
+        btnViewController.fillView( event: event!, withInvertion: true )
+    }
 }

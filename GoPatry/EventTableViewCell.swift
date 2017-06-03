@@ -25,70 +25,56 @@ let statusLabelLists = ["NONE",
 
 class EventTableViewCell: UITableViewCell {
 
-    private var data: Event?
+    //fileprivate var data: Event?
+    fileprivate var btnViewController: BottomBtnsViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // Initialization code
+        btnViewController = BottomBtnsViewController()
+        btnViewController.view = btnView
+        btnViewController.withHandleCountBtn = true
+        btnViewController.createView()
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    func setEventData(data: Event){
+   
+    func setData( _ data: Event, showCommentsCallback: @escaping (( String )->Void), onSelectedListCallback: @escaping (( String, AvailableUserStatus )->Void) ){
             
         ownerName?.text = data.eventOwner!.nik
         eventTitle?.text = data.title
         eventDescr?.text = data.descrition
-        eventTime?.text = data.time?.description
         
-        ownerIcon?.image = data.eventOwner?.photo
+        var eventT = ""
+        var eventD = ""
+        Utils.getDatePart(date: data.time!, outDate: &eventD, outTime: &eventT  )
+        
+        eventTime?.text = eventT
+        eventDate?.text = eventD + ","
+        
+        eventLocation?.text = data.event_location
+        
+        ownerIcon?.setData( url: data.eventOwner?.photo_url ?? "" )
         
         statusImage?.image = statusImages[ data.getCurrentStatus() ]!
-        
-        maybeCount?.text = String(data.doubters_uids.count)
-        goCount?.text = String(data.accepted_uids.count)
-        passCount?.text = String(data.refused_uids.count)
-        
+       
         self.backgroundColor =  getCategoriesColor(data.category)
-        self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.grayColor().CGColor
+        //self.layer.borderWidth = 1.0
+        //self.layer.borderColor = UIColor.gray.cgColor
         
-        if data.event_location == nil {
-            locationBtn.alpha = 0
-        } else {
-            locationBtn.alpha = 1
-        }
+        btnViewController.showCommentsCallback = showCommentsCallback
+        btnViewController.onSelectedListCallback = onSelectedListCallback
+        btnViewController.fillView(  event: data, withInvertion: false )
     }
-    
-
-    @IBOutlet weak var ownerIcon: UIImageView!
+        
+    @IBOutlet weak var eventLocation: UILabel!
+    @IBOutlet weak var ownerIcon: AvatarView!
     @IBOutlet weak var ownerName: UILabel! 
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventDescr: UILabel!
+    
+    @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     
-    @IBOutlet weak var maybeCount: UILabel!
-    @IBOutlet weak var goCount: UILabel!
-    @IBOutlet weak var passCount: UILabel!
-    
-    @IBOutlet weak var locationBtn: UIButton!
     @IBOutlet weak var statusImage: UIImageView!
     
-    @IBAction func maybeBtn(sender: UIButton) {
-    }
-    
-    @IBAction func goBtn(sender: UIButton) {
-    }
-    
-    @IBAction func passBtn(sender: UIButton) {
-    }
-    
-    @IBAction func commentBtn(sender: UIButton) {
-    }
-    
+    @IBOutlet weak var btnView: UIView!
 }

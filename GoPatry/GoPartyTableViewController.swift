@@ -15,114 +15,128 @@ class GoPartyTableViewController: UITableViewController {
     var icons = [String:UIImage]()
     
     var selectedLocation: CLLocation?
+    var currentEventKey: String?
             
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.tableView.backgroundColor = UIColor.clear
+        self.tableView.separatorStyle = .none
+        
+        Model.TheModel.addListener(name: "GoPartyTableViewController", listener: eventHandler )
+        
+        self.refreshControl?.addTarget(self, action: #selector(GoPartyTableViewController.refresh), for: UIControlEvents.valueChanged)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : NAVIGATION_TITLE_COLOR ]
     }
     
-    override func viewWillAppear(animated: Bool) {
+    func refresh()
+    {
+        Model.TheModel.refreshEvent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //if events == nil || events.count == 0 {
-            events = Model.getInstance().getEvents()
-        //}
+    
+        events = Model.TheModel.getEvents()
         tableView.reloadData()
+        
+        self.tableView.separatorStyle = .none
     }
     
-    func deleteEvent( event: Event ) {
-        Model.getInstance().deleteEvent( event )
-        events = Model.getInstance().getEvents()
-        tableView.reloadData()
+    func eventHandler( eventType: String ) {
         
-        let presentingViewController: UIViewController! = self.presentingViewController
-        
-        self.dismissViewControllerAnimated(false) {
-            // go back to MainMenuView as the eyes of the user
-            presentingViewController.dismissViewControllerAnimated(false, completion: nil)
+        if eventType == EVENT_UPDATE {
+            self.refreshControl?.endRefreshing()
+            events = Model.TheModel.getEvents()
+            tableView.reloadData()
         }
+    }
+    
+    func deleteEvent( _ event: Event ) {
+        Model.TheModel.deleteEvent( event )
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
-
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! EventTableViewCell
-
-        cell.locationBtn.tag = indexPath.row
-        let event = events[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let photoUrl = event.eventOwner?.photo_url {
-            event.eventOwner?.photo = IconsStorageManager.getInstance().getIconByUrl( photoUrl )
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! EventTableViewCell
         
-        cell.setEventData( event )
+        cell.setData( events[indexPath.row], showCommentsCallback: showCommentsView, onSelectedListCallback: onSelectedListCallback )
         
         return cell
     }
     
-    func showMapView( location: CLLocation? ) {
+//    func showMapView( _ location: CLLocation? ) {
+//        
+//        if location != nil {
+//            selectedLocation = location
+//            self.performSegue(withIdentifier: "ShowGroupSegue", sender: self)
+//        }
+//    }
+    
+    func onSelectedListCallback( eventKey: String, newStatus: AvailableUserStatus ) {
         
-        if location != nil {
-            selectedLocation = location
-            self.performSegueWithIdentifier("ShowGroupSegue", sender: self)
+        let event = events.filter({$0.key == eventKey})[0]
+        if event != nil && event.owner_uid != Model.TheModel.currentUser.key {
+            event.setCurrentStatusAndSave(newStatus: newStatus)
+            tableView.reloadData()
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func showCommentsView( eventKey: String ) {
         
-        //print("sender.tag\(sender!.tag)")
+        currentEventKey = eventKey
+        self.performSegue(withIdentifier: "ShowCommentViewSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let indexPath = tableView.indexPathForSelectedRow {
             
-            if segue.identifier == "showEventDetailView" {
+            if segue.identifier == "ShowEventDetailView" {
                 
                 print("sender\(sender)")
-                let destinationController = segue.destinationViewController as! EventDetailViewController
+                let destinationController = segue.destination as! EventDetailViewController
                 
                 destinationController.setCurrentEvent( events[indexPath.row] )
                 destinationController.deleteCallback = deleteEvent
+                destinationController.title = events[indexPath.row].title
+            }
+        }
+        
+//        if ( segue.identifier == "ShowMapSegue" ){
+//            if let destinController = segue.destination as? CreateEventMapViewController {
+//          
+//                let index = (sender as! UIButton).tag
+//                if let location = ( events[index] as Event).getLocation() {
+//                        destinController.location = location
+//                }
+//            }
+//        }
+        
+        if segue.identifier == "ShowCommentViewSegue" {
+            if let destinController = segue.destination as? CommentTableViewController {
                 
-                if let photoUrl = events[indexPath.row].eventOwner?.photo_url {
-                    destinationController.iconImage = IconsStorageManager.getInstance().getIconByUrl( photoUrl )
+                if ( currentEventKey != nil ) {
+                    destinController.event_id = currentEventKey!
                 }
             }
         }
-        
-       // print( "segue.identifier \(segue.identifier)")
-        if ( segue.identifier == "ShowMapSegue" ){
-            if let destinController = segue.destinationViewController as? CreateEventMapViewController {
-          
-                if let location = events[sender!.tag].getLocation() {
-                    destinController.location = location//Model.getInstance().getCurrentGeolocation()
-                }
-            }
-        }
-        
-        if segue.identifier == "showCommentsView" {
-            
-            print("sender\(sender)")
-            let destinationController = segue.destinationViewController as! CommentTableViewController
-            
-            destinationController.eventID = events[sender!.tag].id
-        }
-        
         
         print("sender\(sender)")
-
     }
 }
     

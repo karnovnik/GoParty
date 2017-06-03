@@ -10,10 +10,13 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class CreateEventMapViewController: UIViewController, CLLocationManagerDelegate {
+class CreateEventMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var Map: MKMapView!
     var location: CLLocation? = nil
+    
+    var key = CreateEventItemsKeys.NONE
+    var returnResultsCallback: ((CreateEventItemsKeys, AnyObject)->Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,15 @@ class CreateEventMapViewController: UIViewController, CLLocationManagerDelegate 
             annotation.coordinate = annotationCoordinats
             
             Map.addAnnotation( annotation )
+            
+            Map.delegate = self
         }
     }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        print( userLocation )
+        returnResultsCallback!( key, userLocation )
+        // Not getting called
+    }
+    
 }

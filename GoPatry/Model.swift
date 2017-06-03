@@ -10,7 +10,34 @@ import Foundation
 import UIKit
 import CoreData
 import CoreLocation
+import FBSDKLoginKit
 import Firebase
+import FirebaseCrash
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 struct EventComments {
     var comments: [Comment]!
@@ -19,450 +46,408 @@ struct EventComments {
 
 class Model {
     
-    static private let instance = Model()
+    static var TheModel: Model!
     
-    static func getInstance() -> Model {
-        return instance;
-    }
+    var listeners = [String : ( String ) -> Void]()
     
-    var firUser: FIRUser!
+    private var firUser: FIRUser!
+    //var firUserUid: String = "j4kqwjpgSfZ8dDGDpZDU3RAplO92"//!
     var currentUser: User!
+    
     var isAuthNeed: Bool {
         get {
             return firUser == nil
         }
     }
     
-    var users = [User]()
-    var groups = [Group]()
+    var groups: [Group] {
+        get {
+            return groupHelper.groups
+        }
+    }
     
-    private var connections: Connections!
+    var connection: Connections {
+        return connectionsHelper.connections
+    }
     
-    var subscriptions = [String]()
-    var subscribers = [String]()
-    var friends = [User]()
+    var users: [User] {
+        get {
+            let result = userHelper.scopeUsers.filter{ $0.uid != firUser.uid }
+            return result
+        }
+    }
     
-    private var events = [Event]()
+    var subscriptions: [String] {
+        get {
+            return connectionsHelper.connections.subscriptions
+        }
+        set {
+            connectionsHelper.connections.subscriptions = newValue
+            connectionsHelper.saveCurrent()
+        }
+    }
+    
+    var followers: [String] {
+        get {
+            return connectionsHelper.connections.followers
+        }
+        set {
+            connectionsHelper.connections.followers = newValue
+            connectionsHelper.saveCurrent()
+        }
+    }
+     
+    private var events: [Event] {
+        get {
+            return eventHelper.userEvents
+        }
+    }
     
     private var comments = [String:EventComments]()
     
+    private var groupHelper: GroupHelper!
+    private var connectionsHelper: ConnectionsHelper!
+    private var userHelper: UserHelper!
+    private var eventHelper: EventHelper!
+    var commentsHelper: CommentsHelper!
+    private var debugHelper: DebugLoggerHelper!
+    
     var locationManagerHepler: LocationManager!
     
-    private var userDefaults: NSUserDefaults?
+    fileprivate var userDefaults: UserDefaults?
     
-    private init() {
+    private var needToCreateFakeGroupData = false
+    private var needToCreateFakeConnectionsData = false
+    private var needToCreateFakeEventsData = false
+    private var needToCreateFakeCommentsData = false
+    
+    init() {
+        
+        if Model.TheModel == nil {
+            Model.TheModel = self
+        }
         
         FIRApp.configure()
+                
+        // Initialization userHelper here, because of may need to create a new user
+        userHelper = UserHelper( mainREF: FIRDatabase.database() )
+        debugHelper = DebugLoggerHelper( mainREF: FIRDatabase.database(), userUID: "beforeAuth" )
+        
+        //LOG(text: "Model::Init", sendImmediatly: true)
         
         if let user = FIRAuth.auth()?.currentUser {
-            
-            firUser = user
-            
-            print( user.displayName, user.email!, user.uid )
+            if user.uid == "j4kqwjpgSfZ8dDGDpZDU3RAplO92" {
+                
+                try! FIRAuth.auth()!.signOut()
+                return
+            }
+            continueLoading( user )
         
         } else {
-            // вот тут надо втыкать авторизацию
+            
+            // LoginScreen will appear auto
             print("No user sing in")
         }
+    }
+    
+    func continueLoading( _ user : FIRUser ) {
         
-        groups = Group.fetchAllEntities()
-        if groups.count == 0 {
-            createFakeData()
-        }
+        firUser = user
+        userHelper.currentUserUID = firUser.uid
+        
+        debugHelper.setUserUID( userUID: userHelper.currentUserUID );
+        
+        LOG(text: "Model::continueLoading", sendImmediatly: true)
+        
+        print( "The user is logged in. Parameters: \(user.displayName ?? "", user.email!, user.uid)" )
+        
+        // Initialization all FIR helpers
+        groupHelper = GroupHelper( mainREF: FIRDatabase.database(), userUID: firUser.uid )
+        connectionsHelper = ConnectionsHelper( mainREF: FIRDatabase.database(), userUID: firUser.uid )
+        eventHelper = EventHelper( mainREF: FIRDatabase.database(), userUID: firUser.uid )
+        commentsHelper = CommentsHelper( mainREF: FIRDatabase.database(), userUID: firUser.uid )
+
+        // The user is logged in. Fetching data is available
+        dispatchEvent( event: FIR_USER_LOADED )
+        print( "Event \"userLogged\" sent" )
+        
+        locationManagerHepler = LocationManager()
         
         fetchingData()
-        createLocationManager()
+    }
+    
+    func tryToSaveNewUser() {
         
-        // ищем информацию о текущем юзере в UserDefaults и присваимаем его в Model
-        if let user = getNSUserDefaultsUser() {
-            currentUser = user
-            continueLoading()
+        //if firUser.
+    }
+    
+    fileprivate func fetchingData() {
+        
+        if needToCreateFakeGroupData {
+            groupHelper.createFakeDataDebugOnly( callback: { () in
+                
+                self.groupHelper.preventedFetch( callback: self.groupLoadedCallback )
+            })
+        } else {
+            groupHelper.preventedFetch( callback: groupLoadedCallback )
+        }
+        
+        if needToCreateFakeConnectionsData {
+            connectionsHelper.createFakeDataDebugOnly( callback: { () in
+                
+                self.connectionsHelper.preventedFetch( callback: self.connectionsLoadedCallback )
+            })
+        } else {
+            connectionsHelper.preventedFetch( callback: connectionsLoadedCallback )
+        }
+        
+        if needToCreateFakeEventsData {
+            eventHelper.createFakeDataDebugOnly( callback: { () in
+                
+                self.eventHelper.preventedFetch( callback: self.eventsLoadedCallback )
+            })
+        } else {
+            //eventHelper.fetchAllEventsDebugOnly( callback: eventsLoadedCallback )
+            eventHelper.preventedFetch( callback: eventsLoadedCallback )
         }
     }
     
-    func setCurrentUser( userUID: String ) {
-        
-        //let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults!.setObject( FakeData.fakeCurrentUserUID, forKey: "current_user_uid" )
-        userDefaults!.synchronize()
-        
-        currentUser = users.filter{ $0.uid! == userUID }.first!
-    
-        continueLoading()
+    func groupLoadedCallback() {
+        LOG(text: "Model::Groups loaded", sendImmediatly: true)
+        print("Groups loaded")
     }
     
-    func deleteCurrentUser() {
-        
-        if firUser != nil {
-            firUser.deleteWithCompletion { error in
-                if let error = error {
-                    print("An error happened into deleting current user.", error.localizedDescription)
-                } else {
-                    print("Account deleted.")
-                }
-            }
-        }
+    func connectionsLoadedCallback() {
+        LOG(text: "Model::Connections loaded", sendImmediatly: true)
+        print("Connections loaded")
     }
     
-    func updateCurrentUser( name _name : String, photoUrl : String) {
+    func eventsLoadedCallback() {
+        LOG(text: "Model::Events loaded", sendImmediatly: true)
+        print("Events loaded")
         
-        if firUser != nil {
-            
-            let changeRequest = firUser.profileChangeRequest()
-    
-            changeRequest.displayName = _name
-    
-            changeRequest.photoURL = NSURL( string: photoUrl )
-            changeRequest.commitChangesWithCompletion { error in
-                if let error = error {
-                    print("An error happened into updating current user.", error.localizedDescription)
-                } else {
-                    print("Account updated.")
-                }
-            }
-        }
+        commentsHelper.getEventsCommentsAmount( events_keys: events.map{$0.key!}, callback: commentsAmountLoadedCallack )
     }
     
-    func continueLoading() {
-        
-        print( "currentUser from Model::getNSUserDefaultsUser: \n\(currentUser.uid)" )
-    }
-    
-    private func createLocationManager() {
-        locationManagerHepler = LocationManager()
-    }
-    
-    func updateCurrentGeolocation() {
-        locationManagerHepler.updateCurrentGeolocation()
-    }
-    
-    func getCurrentGeolocation() -> CLLocation? {
-        return locationManagerHepler.currentGeolocation
-    }
-    
-    private func fetchingData() {
-        
-        // проверяем наличие данных в CoreData
-        // Users
-        users = User.fetchAllEntities()
-        currentUser = users.filter{ $0.uid! == FakeData.fakeCurrentUserUID }.first!
-        users.toString()
-        
-        // Groups
-        //CoreDataHelper.getInstance().deleteAllEntitesByTypeName("Group")
-        groups = Group.fetchAllEntities()
-        groups.toString()
-        
-        // Events
-        //CoreDataHelper.getInstance().deleteAllEntitesByTypeName("Event")
-        events = Event.fetchAllEntities()
+    func commentsAmountLoadedCallack( result: Dictionary<String, Int>) {
+        LOG(text: "Model::Events comments loaded", sendImmediatly: true)
+        print("Events comments loaded")
         
         for event in events {
-            if currentUser != nil && event.owner_uid == currentUser.uid {
-                event.setOwner( currentUser )
-            } else if let i = users.indexOf( {$0.uid! == event.owner_uid!} ) {
-                event.setOwner( users[i] )
-            }
-        }
-        events.toString()
-        
-        //Subscriptions
-        connections = Connections.fetchAllEntities().first
-        
-        if let uids = (connections.subscriptions?.split(",")) {
-            subscriptions = uids
-        }
-        
-        if let uids = (connections.subscribers?.split(",")) {
-            subscribers = uids
-        }
-        
-        if let uids = (connections.friends?.split(",")) {
-            for uid in uids {
-                if let i = users.indexOf({$0.uid! == uid}) {
-                    friends.append( users[i] )
-                }
+            if result[event.key!] != nil {
+                event.comments.previousAmount = result[event.key!]!
             }
         }
         
-        print( connections.description )
+        userHelper.preventedFetch( callback: usersLoadedCallback )
     }
     
-    func getNSUserDefaultsUser() -> User? {
-        var user: User? = nil
-        userDefaults = NSUserDefaults.standardUserDefaults()
-        //userDefaults!.setObject(nil, forKey: "current_user_uid")
-        for (key, value) in userDefaults!.dictionaryRepresentation() {
-            print(key, value)
+    func usersLoadedCallback() {
+        
+        currentUser = userHelper.getUserByUID( uid: firUser.uid )
+        
+        for event in events {
+            event.eventOwner = userHelper.getUserByUID( uid: event.owner_uid )
         }
         
-        if let user_uid = userDefaults!.objectForKey( "current_user_uid" ) as? NSData {
-            
-            user = users.filter{ $0.uid == user_uid }.first!
-            
-            
-            
+//        if needToCreateFakeCommentsData {
+//            commentsHelper.createFakeDataDebugOnly( callback: { () in
+//                
+//                print("Fake comments created")
+//            })
+//        }
         
-        } else {
-            FIRAuth.auth()?.createUserWithEmail("nukarnov@gmail.com", password: "katuba") { (user, error) in
-                if let error = error {
-                    print("Sign in failed:", error.localizedDescription)
-                    
-                } else {
-                    print ("Signed in with uid:", user!.uid)
-                    self.userDefaults!.setObject( FakeData.fakeCurrentUserUID, forKey: "current_user_uid" )
-                    self.userDefaults!.synchronize()
-                }
+        LOG(text: "Model::Users loaded", sendImmediatly: true)
+        print("Users loaded")
+        print("Prevented loading completed!")
+        
+        dispatchEvent( event: DATA_LOADED )
+    }
+    
+    func singInCurrentUserBy( email: String, pass: String ) {
+        userHelper.singInBy( email: email, pass: pass, callback: { user in
+            
+            if user != nil {
+                self.continueLoading( user! )
             }
-        }
-        
-        //print( "user from Model::getNSUserDefaultsUser: \n\(user.description)" )
-        return user
+        })
+    }
+    
+    func singUpCurrentUserBy( email: String, pass: String ) {
+        userHelper.singUpBy( email: email, pass: pass, callback: { user in
+            
+            self.continueLoading(user!)
+        })
     }
 
-    func getEvents() -> [Event] {
-        return events
+    func facebookAuthComplete() {
+        
+        if let accessToken = FBSDKAccessToken.current() {
+            FacebookHelper.getInstance().setToken( token: accessToken )
+            FacebookHelper.getInstance().getMe( _callback: {
+                
+                self.userHelper.singUpByFacebook( callback : { user in
+                    
+                    self.continueLoading(user!)
+                    
+                })
+            })
+        }
     }
     
-    func getGroupMembresBy( groupName groupName: String ) -> [String] {
+    func findUsersByFBIDsAndAddedToUsers( fb_ids: [String] ) -> Void {
+        userHelper.findUsersByFBIDsAndAddedToUsers( list: fb_ids )
+    }
+    
+    func getUsersBy( uidsList uids: [String], withCurrent: Bool = false ) -> [User] {
+        
+        var result = users.filter{ uids.contains($0.uid) }
+        //print("getUsersByUIDSList result.count = \(result.count)")
+        if withCurrent &&  uids.contains(currentUser.uid) {
+            result.append(currentUser)
+        }
+        return result
+    }
+    
+    func getScopedUsersWithoutExitsConnection() -> [User] {
+        return userHelper.getScopedUsersWithoutExitsConnection()
+    }
+    
+    // groups
+    func removeGroup( group: Group ) {
+        
+        groupHelper.removeGroup( group: group )
+    }
+    
+    func saveGroup( group: Group ) {
+        groupHelper.saveGroup(group: group)
+    }
+    
+    func getGroupMembresBy( groupName: String ) -> [String] {
         for group in groups {
             if group.name == groupName {
-                if let uids = (group.members?.split(",")) {
-                    return uids
-                }
+                return group.members!
             }
         }
         
         return [String]()
     }
     
-    func getUsersBy( uidsList uids: [String] ) -> [User] {
-        
-        //print("getUsersByUIDSList uids.coint = \(uids.count)")
-        let result = users.filter{ uids.contains($0.uid!) }
-        //print("getUsersByUIDSList result.count = \(result.count)")
+    func getUsersGroupsNames( uid: String) -> [String] {
+        var result = [String]()
+        for group in groups {
+            if group.members.contains(uid) {
+                result.append(group.name)
+            }
+        }
         return result
     }
     
-    func getFirstComments( eventId: String ) -> [Comment]? {
-        if comments[eventId] == nil {
-            
-            comments[eventId] = EventComments()
-            comments[eventId]?.comments = Comment.fetchFirstEntities()
-        }
+    // events
+    func getEvents() -> [Event] {
+        return events
+    }
+    
+    func getEvent( byId: String ) -> Event? {
         
-        if comments[eventId]?.comments.count > 0 {
-            return Array(comments[eventId]!.comments!.prefix(10))
-        } else {
-            comments[eventId]?.isFullLoaded = true
+        let filtered = events.filter({$0.key == byId})
+        if filtered.count != 0 {
+            return filtered[0]
         }
-        
         return nil
     }
     
-    func getNextComments( eventId: String ) -> [Comment]? {
-        
-        if comments[eventId] == nil {
-            return getFirstComments( eventId )
+    func addActualUserEventsToEventsList( userUID: String ) {
+        if let user = userHelper.getUserByUID( uid: userUID ) {
+            eventHelper.addActualUserEventsToEventsList( user:  user )
         }
-        
-        if comments[eventId]!.isFullLoaded {
+    }
+
+    func saveEvent( event: Event ) {
+        eventHelper.saveEvent( event: event )
+    }
+    
+    func deleteEvent( _ event: Event ) {
+        eventHelper.removeEvent( event: event )
+    }
+    
+    func refreshEvent() {
+        eventHelper.preventedFetch( callback: { () in
             
-            return Array(comments[eventId]!.comments!.prefix(10))
-        } else {
-            let delta: [Comment] = Comment.fetchEntities(startIndex: comments[eventId]!.comments.count )
-            if delta.count > 0 {
-                comments[eventId]!.comments.appendContentsOf( delta )
-                return delta
-            } else {
-                comments[eventId]!.isFullLoaded = true
-                return Array(comments[eventId]!.comments!.prefix(10))
+            for event in self.events {
+                if event.eventOwner == nil {
+                    event.eventOwner = self.userHelper.getUserByUID( uid: event.owner_uid )
+                }
             }
-        }
+            self.dispatchEvent( event: EVENT_UPDATE )
+        })
     }
     
-    func saveOrCreateGroup( oldGroupName groupName: String, newGroupName: String, membersUIDs: [String] ) {
-        
-        var isChanged = false
-        for group in groups {
-            if group.name == groupName {
-                group.name = newGroupName
-                group.members = membersUIDs.joinWithSeparator(",")
-                isChanged = true
-                break
-            }
-        }
-        
-        if !isChanged {
-            let group = Group()
-            group.name = newGroupName
-            group.members = membersUIDs.joinWithSeparator(",")
+    
+    // connections
+    func saveConnections() {
+        connectionsHelper.saveCurrent()
+    }
+    
+    func removeSubscription( uid: String ) {
+        connectionsHelper.removeSubscription( uid: uid )
+    }
+    
+    func refreshConnections() {
+        connectionsHelper.preventedFetch( callback: { () in
             
-            groups.append(group)
+            self.dispatchEvent( event: CONNECTIONS_UPDATE )
+        })
+    }
+    
+    func addSubscription( uid: String ) {
+        connectionsHelper.addSubscription( uid: uid )
+    }
+    
+    // comments
+    func addComment( comment: Comment ) {
+        commentsHelper.addComment( comment: comment )
+    }
+    
+    func saveComment( comment: Comment ) {
+        commentsHelper.saveComment( comment: comment )
+    }
+    
+    func getComments( event_id: String , callback: @escaping ( Comments? ) -> Void ) {
+        commentsHelper.fetchEntitiesSince(event_key: event_id, callback: callback )
+    }
+    
+    // locations
+    func updateCurrentGeolocation() {
+        locationManagerHepler.updateCurrentGeolocation()
+    }
+    
+    func getCurrentGeolocation() -> CLLocation? {
+        return locationManagerHepler.getCurrentGeolocation()
+    }
+    
+    func LOG( text : String, sendImmediatly : Bool ) {
+         debugHelper.LOG( text: text, sendImmediatly: sendImmediatly )
+    }
+    
+    // dispatch event
+    func dispatchEvent( event : String ) {
+        for ( key, _ ) in listeners {
+            print( "event: \(event), listener by key = \(key) = \(listeners[key])" )
+            listeners[key]!( event )
         }
-        
-        CoreDataHelper.getInstance().save()
     }
     
-    func saveSubscription() {
-        connections.subscriptions = subscriptions.joinWithSeparator(",")
-        connections.subscribers = subscribers.joinWithSeparator(",")
-        
-        CoreDataHelper.getInstance().save()
-    }
-    
-    func createAndSaveEvent( owner_uid: String, title: String, descr: String, date: NSDate, invitions: String, category: AvailableCategories, location: String ) {
-        
-        let event:Event = Event()
-        event.id = Utils.getUID()
-        event.owner_uid = owner_uid
-        event.time = date
-        event.title = title
-        event.descrition = descr
-        
-        event.invitations_db = invitions
-        event.accepted_db = ""
-        event.doubters_db = ""
-        event.refused_db = ""
-        
-        event.status = AvailableEventStatus.CREATED
-        event.category = category
-        
-        event.event_location = location
-        
-        if CoreDataHelper.getInstance().save() {
-            event.setOwner( users.filter{ $0.uid! == event.owner_uid }.first! )
-            events.append( event )
-        }
-    }
-    
-    func deleteEvent( event: Event ) {
-        CoreDataHelper.getInstance().deleteEntity(event)
-        events.removeAtIndex(events.indexOf(event)!)
-    }
-    
-    func createFakeData() {
-        CoreDataHelper.getInstance().clearAllCoreData()
-        
-        //CoreDataHelper.getInstance().deleteAllEntitesByTypeName("User")
-        createFakeUsers()
-        users = User.fetchAllEntities()
-        
-        // Groups
-        //CoreDataHelper.getInstance().deleteAllEntitesByTypeName("Group")
-        createFakeGroups()
-        
-        // Events
-        //CoreDataHelper.getInstance().deleteAllEntitesByTypeName("Event")
-        events = Event.fetchAllEntities()
-        createFakeEvents()
-        
-        //Subscriptions
-        createFakeConnections()
-        
-        // Comments
-        createFakeComments()
-    }
-    
-    private func createFakeUsers() {
-        for i in 1...Int( arc4random_uniform(100) + 25 ) {
-            
-            let user = User()
-            user.uid = Utils.getUID(15)
-            let fb_id:String? = ( Utils.randomBool() ? FakeData.fakeIds.randomItem() as String : nil )
-            user.fb_id = fb_id ?? ""
-            user.photo_url = ( fb_id != nil ? "https://graph.facebook.com/\(fb_id!)/picture?width=100&height=100" : nil )
-            user.nik = "User \(i) Name"
-            user.f_name = "f_User \(i) Name"
-        }
-        
-//        let user = User()
-//        user.uid = "vc4dea"
-//        user.f_name = "Николай"
-//        user.s_name = "Карновский"
-//        user.fb_id = "100001738324533"
-//        user.photo_url = "https://graph.facebook.com/100001738324533/picture?width=100&height=100"
-//        //user.photo_url = "https://graph.facebook.com/" + String(user.fb_id!) + "/picture?width=100&height=100"
-//        user.nik = "KarnovNik"
-        
-        FakeData.fakeCurrentUser
-                
-        CoreDataHelper.getInstance().save()
-    }
-    
-    private func createFakeGroups() {
-        for groupId in FakeData.fakeGroupIds {
-            let group = Group()
-            group.name = groupId
-            group.members = getSetFakeUid()
+    func addListener( name : String, listener : @escaping (String) -> Void ) {
+        if listeners[name] == nil {
+            listeners[name] = listener
             
         }
-        
-        CoreDataHelper.getInstance().save()
     }
     
-    private func createFakeEvents() {
-        for i in 1...Int( arc4random_uniform(20) + 5 )
-        {
-            let event:Event = Event()
-            event.id = Utils.getUID()
-            event.owner_uid = users.randomItem().uid
-            event.time = NSDate.random()
-            event.title = "This Event #\(i)"
-            event.descrition = "this is descr for party #\(i) and it is very long description for we can watch a wrap and we need even more lengthly text"
-            
-            event.accepted_db = getSetFakeUid()
-            event.refused_db = getSetFakeUid()
-            event.doubters_db = getSetFakeUid()
-            
-            event.status = AvailableEventStatus.random()
-            event.category = AvailableCategories.random()
-            
-            event.event_location = Utils.randomBool() ? "" : "\(FakeData.getFakeCoordinate()),\(FakeData.getFakeCoordinate())"
-            
-            //print( "event.event_location = \( event.event_location )")
+    func removeListener( name: String, listener: (String) -> Void ) {
+        if listeners[name] != nil {
+            listeners.removeValue( forKey: name )
         }
-        
-        CoreDataHelper.getInstance().save()
     }
-    
-    private func createFakeConnections() {
-        let connections = Connections()
-        connections.uid = FakeData.fakeCurrentUserUID
-        connections.subscribers = getSetFakeUid( 10 )
-        connections.subscriptions = getSetFakeUid( 10 )
-        connections.friends = getSetFakeUid( FakeData.fakeIds.count )
-        
-        CoreDataHelper.getInstance().save()
-    }
-    
-    private func createFakeComments() {
-        
-        for event in events {
-            let commentAmount = Int( arc4random_uniform( 20 ))
-            
-            for _ in 0...commentAmount {
-                let comment = Comment()
-                comment.event_id = event.id
-                comment.user_uid = users.randomItem().uid
-                comment.text = FakeData.getRandomTextForComment()
-                comment.date = NSDate.random()
-                
-                print(comment.description)
-            }
-        }
-       
-        CoreDataHelper.getInstance().save()
-    }
-    
-    private func getSetFakeUid( amount: Int = 0 ) -> String {
-        var amountInner = amount
-        if amountInner == 0 {
-            amountInner = Int( arc4random_uniform( 20 ) + 5 );
-        }
-        return (users.getSetFrom( amountInner ).map{ $0.uid! }).joinWithSeparator(",")
-    }
-    
-    
-    
 }

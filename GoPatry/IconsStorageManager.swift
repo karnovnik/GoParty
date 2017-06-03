@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class IconsStorageManager {
-    static private let instance = IconsStorageManager()
+    static fileprivate let instance = IconsStorageManager()
     
     static func getInstance() -> IconsStorageManager {
         return instance;
@@ -18,21 +18,31 @@ class IconsStorageManager {
     
     var icons = [String:UIImage]()
     
-    func getIconByUrl( photoUrl: String? ) -> UIImage {
+    func getOrLoadIcon( photoUrl: String, callback: @escaping (( UIImage? )->Void) ) {
         
-        if photoUrl == nil {
-            return UIImage( named: "ask_mark" )!
+        if let icon = icons[ photoUrl ] {
+            callback( icon )
+            return
         }
         
-        if let icon = icons[ photoUrl! ] {
-            return icon
-        } else {
-            let url:NSURL = NSURL(string: photoUrl! )!
-            let data:NSData = NSData(contentsOfURL: url )!
-            
-            icons[ photoUrl! ] = UIImage(data: data)
-            return icons[ photoUrl! ]!
+        if let url = URL(string: photoUrl ) {
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                do
+                {
+                    let imageData:NSData = try NSData(contentsOf: url)
+                
+                    // When from background thread, UI needs to be updated on main_queue
+                    DispatchQueue.main.async {
+                        let icon = UIImage(data: imageData as Data)
+                        self.icons[ photoUrl ] = icon
+                        callback( icon )
+                    }
+                
+                } catch {
+                    print("error getting xml string")
+                }
+            }
         }
-        return UIImage( named: "ask_mark" )!
-    }
+    }    
 }

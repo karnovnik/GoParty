@@ -11,7 +11,7 @@ import CoreLocation
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
-    var currentGeolocation: CLLocation?
+    private var currentGeolocation: CLLocation?
     
     // Юлия 55.892271, 37.270599
     
@@ -21,7 +21,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         createLocationManager()
     }
     
-    private func createLocationManager() {
+    fileprivate func createLocationManager() {
         if ( CLLocationManager.locationServicesEnabled() ) {
             locationManager = CLLocationManager()
             locationManager.delegate = self
@@ -33,12 +33,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    @objc func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    @objc func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
         print(error)
     }
     
-    @objc func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    @objc func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         currentGeolocation = locations.last! as CLLocation
         locationManager.stopUpdatingLocation()

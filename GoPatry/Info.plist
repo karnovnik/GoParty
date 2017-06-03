@@ -18,21 +18,6 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb151724738572175</string>
-			</array>
-		</dict>
-	</array>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>FacebookAppID</key>
-	<string>151724738572175</string>
-	<key>FacebookDisplayName</key>
-	<string>GoParty</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -40,6 +25,49 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>facebook.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb151724738572175</string>
+				<string>GoParty</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>151724738572175</string>
+	<key>FacebookDisplayName</key>
+	<string>GoParty</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>

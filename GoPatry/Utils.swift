@@ -9,9 +9,15 @@
 import Foundation
 import UIKit
 
-extension String : CollectionType {
-    func contains(find: String) -> Bool{
-        return self.rangeOfString(find) != nil
+extension String : Collection {
+    func contains(_ find: String) -> Bool{
+        return self.range(of: find) != nil
+    }
+}
+
+extension UIColor {
+    convenience init(hex: Int, alpha: Double = 1.0) {
+        self.init(red: CGFloat((hex>>16)&0xFF)/255.0, green:CGFloat((hex>>8)&0xFF)/255.0, blue: CGFloat((hex)&0xFF)/255.0, alpha:  CGFloat(255 * alpha) / 255)
     }
 }
 
@@ -26,14 +32,14 @@ extension Array {
         return index
     }
     
-    func getSetFrom( _count: Int ) -> [Element] {
+    func getSetFrom( _ _count: Int ) -> [Element] {
         var returnValue = [Element]()
         var fromIn = self
         
         let inCount = _count > (self.count - 1) ? (self.count - 1) : _count
         
         for _ in 1...inCount {
-            returnValue.append( fromIn.removeAtIndex( Utils.getRandomInRange( fromIn.count ) ) )
+            returnValue.append( fromIn.remove( at: Utils.getRandomInRange( fromIn.count ) ) )
         }
         return returnValue
     }
@@ -53,26 +59,27 @@ extension Array {
 
 public extension NSDate {
     /// SwiftRandom extension
-    public static func randomWithinDaysBeforeToday(days: Int) -> NSDate {
-        let today = NSDate()
+    public static func randomWithinDaysBeforeToday(_ days: Int) -> Date {
+        let today = Date()
         
-        guard let gregorian = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else {
-            print("no calendar \"NSCalendarIdentifierGregorian\" found")
-            return today
-        }
+        let gregorian = Calendar(identifier: Calendar.Identifier.gregorian)
+//        else {
+//            print("no calendar \"NSCalendarIdentifierGregorian\" found")
+//            return today
+//        }
         
         let r1 = arc4random_uniform(UInt32(days))
         let r2 = arc4random_uniform(UInt32(23))
         let r3 = arc4random_uniform(UInt32(23))
         let r4 = arc4random_uniform(UInt32(23))
         
-        let offsetComponents = NSDateComponents()
+        var offsetComponents = DateComponents()
         offsetComponents.day = Int(r1) * -1
         offsetComponents.hour = Int(r2)
         offsetComponents.minute = Int(r3)
         offsetComponents.second = Int(r4)
         
-        guard let rndDate1 = gregorian.dateByAddingComponents(offsetComponents, toDate: today, options: []) else {
+        guard let rndDate1 = (gregorian as NSCalendar).date(byAdding: offsetComponents, to: today, options: []) else {
             print("randoming failed")
             return today
         }
@@ -80,9 +87,9 @@ public extension NSDate {
     }
     
     /// SwiftRandom extension
-    public static func random() -> NSDate {
-        let randomTime = NSTimeInterval(arc4random_uniform(UInt32.max))
-        return NSDate(timeIntervalSince1970: randomTime)
+    public static func random() -> Date {
+        let randomTime = TimeInterval(arc4random_uniform(UInt32.max))
+        return Date(timeIntervalSince1970: randomTime)
     }
 }
 
@@ -97,35 +104,36 @@ extension UIViewController {
     }
 }
 
+
 class Utils {
-    private init() {}
+    fileprivate init() {}
     
     
     static func randomBool() -> Bool {
         return arc4random_uniform(2) == 0 ? true: false
     }
     
-    static func getRandomInRange( max: Int, min: Int = 0 ) -> Int {
+    static func getRandomInRange( _ max: Int, min: Int = 0 ) -> Int {
         return Int( arc4random_uniform( UInt32( max ) ) ) + min
     }
     
-    static func getUID( length: Int = 10) -> String {
+    static func getUID( _ length: Int = 10) -> String {
         if length > 16 {
             print("ERROR!!! Utils::getUID: length is too much!")
         }
-        let nssUUID = NSUUID().UUIDString;
-        let startIndex = nssUUID.endIndex.advancedBy( -length )
-        let endIndex = nssUUID.endIndex.advancedBy( 0 )
+        let nssUUID = UUID().uuidString;
+        let startIndex = nssUUID.characters.index(nssUUID.endIndex, offsetBy: -length)
+        let endIndex = nssUUID.characters.index(nssUUID.endIndex, offsetBy: 0)
         let ret = nssUUID[startIndex..<endIndex]
-        let newString = ret.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let newString = ret.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         return newString
     }
     
-    static func objectToString( obj: AnyObject ) -> String {
+    static func objectToString( _ obj: AnyObject ) -> String {
         var result = ""
         let mirrored_object = Mirror(reflecting: obj)
         
-        for (key, attr) in mirrored_object.children.enumerate() {
+        for (key, attr) in mirrored_object.children.enumerated() {
             if let property_name = attr.label as String! {
                 result += "\(property_name) : \(attr.value) : \(key)\n"
             }
@@ -133,24 +141,24 @@ class Utils {
         return result
     }
     
-    static func showAlert( title: String, message: String, vc: UIViewController ) {
+    static func showAlert( _ title: String, message: String, vc: UIViewController ) {
         let alertController = UIAlertController(title: title, message:
-            message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+            message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
         
-        dispatch_async(dispatch_get_main_queue(), {
-            vc.presentViewController(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: {
+            vc.present(alertController, animated: true, completion: nil)
         })
         
     }
     
-    static func combineDateWithTime(date: NSDate, time: NSDate) -> NSDate? {
-        let calendar = NSCalendar.currentCalendar()
+    static func combineDateWithTime(_ date: Date, time: Date) -> NSDate? {
+        let calendar = Calendar.current
         
-        let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
-        let timeComponents = calendar.components([.Hour, .Minute, .Second], fromDate: time)
+        let dateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: date)
+        let timeComponents = (calendar as NSCalendar).components([.hour, .minute, .second], from: time)
         
-        let mergedComponments = NSDateComponents()
+        var mergedComponments = DateComponents()
         mergedComponments.year = dateComponents.year
         mergedComponments.month = dateComponents.month
         mergedComponments.day = dateComponents.day
@@ -158,6 +166,56 @@ class Utils {
         mergedComponments.minute = timeComponents.minute
         mergedComponments.second = timeComponents.second
         
-        return calendar.dateFromComponents(mergedComponments)
+        return calendar.date(from: mergedComponments) as NSDate?
+    }
+    
+    static func getDatePart( date: NSDate, outDate: inout String, outTime: inout String ) {
+        let calendar = Calendar.current
+        
+        let hour = calendar.component(.hour, from: date as Date)
+        let minutes = calendar.component(.minute, from: date as Date)
+        outTime = "\(hour):\(minutes)"
+        
+        let day = calendar.component(.day, from: date as Date)
+        let month = calendar.component(.month, from: date as Date)
+        let monthName = DateFormatter().monthSymbols[month - 1]
+        outDate = "\(day) \(monthName)"
+    }
+    
+    static func getReadableTime( date: Date ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date)
+        if year == calendar.component(.year, from: Date()) {
+            dateFormatter.dateFormat = "eee MMM dd hh:mm"
+        } else {
+            dateFormatter.dateFormat = "eee MMM dd yyyy hh:mm"
+        }
+        
+        return dateFormatter.string( from: date )
+    }
+    
+    static func parseDateFromReadableTime( dateStr: String ) -> Date {
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year], from: date)
+        
+        let year =  components.year
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        
+        if ( dateStr.contains( String( describing: year ) ) ) {
+            dateFormatter.dateFormat = "eee MMM dd yyyy hh:mm"
+        } else {
+            dateFormatter.dateFormat = "eee MMM dd hh:mm"
+        }
+        
+        let dateObj = dateFormatter.date( from: dateStr )
+               
+        return dateObj!
     }
 }

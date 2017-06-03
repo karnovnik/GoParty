@@ -7,33 +7,34 @@
 //
 
 import Foundation
-import CoreData
+import Firebase
 
 
-class Group: NSManagedObject {
+class Group: NSObject {
 
+    var name: String!
+    var members: [String]!
+    var key: String?
+    
     override var description: String {
-        return "name: \(name)\nmembers: \(members)"
+        return "Group description: \n" + "key:\(key)\n" + toAnyObject().description
     }
     
-    class var entity: NSEntityDescription {
-        return NSEntityDescription.entityForName("Group", inManagedObjectContext: CoreDataHelper.getInstance().context)!
+    convenience init( name: String, members: [String] = [], key: String? ) {
+        self.init()
+        self.name = name
+        self.members = members
+        self.key = key
     }
     
-    convenience init() {
-        self.init( entity: Group.entity, insertIntoManagedObjectContext: CoreDataHelper.getInstance().context )
+    func toAnyObject() -> AnyObject {
+        return [
+            "name": name,
+            "members": members
+            ] as NSDictionary
     }
     
-    class func fetchAllEntities() -> [Group] {
-        let request = NSFetchRequest( entityName: "Group" )
-        do {
-            let result = try CoreDataHelper.getInstance().context.executeFetchRequest( request ) as! [Group]
-            return result
-        } catch {
-            print("Something wrong into Group::fetchAllEntities \(error)")
-        }
-        
-        return [Group]()
+    func save() {
+        Model.TheModel.saveGroup( group: self )
     }
-
 }

@@ -8,125 +8,221 @@
 
 import UIKit
 import CoreLocation
+import Foundation
 
-class CreateEventViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate {
-
-    var pickerData: [String]!
+class CreateEventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var descrTextField: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var timePicker: UIDatePicker!
-    @IBOutlet weak var typePicker: UIPickerView!
+    @IBOutlet weak var tableView: UITableView!
+       
+    var invitations = [User]()
+    var eventDate:Date?
+    var location: CLLocation?
+    var selectedCategory = AvailableCategories.NONE
     
-    var locationDataDelegate: CLLocationManagerDelegate?
-    var invitions: String?
+    var resultDict = [CreateEventItemsKeys: String]()
     
     override func viewDidLoad() {
         
         self.hideKeyboardWhenTappedAround()
         
-        pickerData = AvailableCategories.getTextValues()
-        typePicker.dataSource = self
-        typePicker.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         
-        datePicker.minimumDate = NSDate()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
         
-        self.titleTextField.delegate = self;
-        self.descrTextField.delegate = self;
+        //tableView.separatorStyle = .none
+        clearForm()
         
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        self.hideKeyboardWhenTappedAround()
+        
+        setupNavigationItem()
     }
     
-    @IBAction func createBtn(sender: AnyObject) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    @IBAction func createBtn(_ sender: AnyObject) {
         
         if let alertMessage = validateData()  {
-            let alertController = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
             
             let doubt = UIAlertAction(title: "OK",
-                                      style: .Default, handler: nil )
+                                      style: .default, handler: nil )
             
             alertController.addAction(doubt)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             
             return
         }
         
-        let title = titleTextField.text
-        let descr = descrTextField.text ?? ""
-        let date = Utils.combineDateWithTime( datePicker.date, time: timePicker.date )
-        let invitionsTmp = self.invitions ?? ""
-        let owner_uid = Model.getInstance().currentUser.uid
-        let selectedCategory = pickerData[typePicker.selectedRowInComponent(0)]
-        let category = AvailableCategories.getValueFromWord( selectedCategory )
-        let location = "\(FakeData.getFakeCoordinate()),\(FakeData.getFakeCoordinate())"//locationDataDelegate.lo
+        let title = resultDict[CreateEventItemsKeys.NAME]
+        let descr = resultDict[CreateEventItemsKeys.DESCRIPTION] ?? ""
+        let date =  eventDate!
         
-        Model.getInstance().createAndSaveEvent( owner_uid!, title: title!, descr: descr, date: date!, invitions: invitionsTmp, category: category, location: location )
+        let owner_uid = Model.TheModel.currentUser.uid
         
+        let location = resultDict[CreateEventItemsKeys.LOCATION] ?? ""//self.location?.description
+        
+        let event = Event(owner_uid: owner_uid, title: title!, descrition: descr, time: date as Date, location: location)
+        event.category = selectedCategory
+        event.invitations = invitations.map{$0.uid}
+        event.eventOwner = Model.TheModel.currentUser
+        event.save()
+        
+        let alertController = UIAlertController( title: "Event created", message: "Event was created!", preferredStyle: UIAlertControllerStyle.alert )
+        
+        let btnOK = UIAlertAction( title: "OK", style: .default, handler: {(action: UIAlertAction) -> Void in
+            self.parent?.tabBarController?.selectedIndex = 0
+        })
+        
+        clearForm()
+        alertController.addAction( btnOK )
+        
+        self.present( alertController, animated: true, completion: nil )
     }
     
     func validateData() -> String? {
-        let title = titleTextField.text
+        
+        let title = resultDict[CreateEventItemsKeys.NAME]
         if title == nil || title!.isEmpty {
             return "The title have not entered"
         }
         
-//        let currentDate = NSDate()
-//        let dateComparisionResult:NSComparisonResult = currentDate.compare(datePicker.date)
-//        
-//        if dateComparisionResult == NSComparisonResult.OrderedDescending {
-//            return "Дата события раньше текущей даты"
-//        }
+        let date = resultDict[CreateEventItemsKeys.DATE]
+        if date == nil || date!.isEmpty {
+            return "Event date is necessarily field!"
+        }
         
         return nil
     }
     
-    //MARK: Data Sources
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    //MARK: Delegates
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(pickerData[row])
-//        typePicker.text = pickerData[row]
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if segue.identifier == "ShowMapSegue" {
-            if let destinController = segue.destinationViewController as? CreateEventMapViewController {
+        if segue.identifier == "ShowLocationSegue" {
+            if let destinController = segue.destination as? CreateEventMapViewController {
                 
-                destinController.location = Model.getInstance().getCurrentGeolocation()
-                locationDataDelegate = destinController as CLLocationManagerDelegate
+                destinController.location = location ?? Model.TheModel.getCurrentGeolocation()
+                destinController.key = CreateEventItemsKeys.LOCATION
+                destinController.returnResultsCallback = tableCellEditeCallback
             }
         }
         
-        if segue.identifier == "showPeopleSelectView" {
-            if let destinController = segue.destinationViewController as? CreateEventPeopleViewController {
+        if segue.identifier == "ShowSelectPeopleView" {
+            if let destinController = segue.destination as? CreateEventPeopleViewController {
                 
-                destinController.returnResultsCallback = returnResultsCallback
+                if invitations.count == 0 {
+                    invitations = Model.TheModel.getUsersBy(uidsList: Model.TheModel.connection.followers)
+                }
+                destinController.selectedUsers = invitations
+                destinController.key = CreateEventItemsKeys.INVITE
+                destinController.returnResultsCallback = tableCellEditeCallback
+            }
+        }
+        
+        if segue.identifier == "ShowDateTimeSegue" {
+            if let destinController = segue.destination as? CreateEventDateViewController {
+                
+                destinController.eventDate = eventDate ?? Date()
+                destinController.key = CreateEventItemsKeys.DATE
+                destinController.returnResultsCallback = tableCellEditeCallback
+            }
+        }
+        
+        if segue.identifier == "ShowSelectTypeSegue" {
+            if let destinController = segue.destination as? CreateEventTypeViewController {
+                
+                destinController.selectedCategory = selectedCategory
+                destinController.key = CreateEventItemsKeys.CATEGORY
+                destinController.returnResultsCallback = tableCellEditeCallback
             }
         }
     }
     
-    func returnResultsCallback( invitions: [String] ) {
-        self.invitions = invitions.joinWithSeparator(",")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return CreateEventItemsKeys.values.count
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",
+                                                 for: indexPath as IndexPath) as! CreateViewTitleItem
+        
+        let tmpKey = CreateEventItemsKeys.values[indexPath.row]
+        let value = resultDict[tmpKey] ?? ""
+        
+        cell.setDate(_key: tmpKey , _value: value, _callback: tableCellEditeCallback )
+        cell.tableViewController = self
+        print("key = \(tmpKey.getTextValue()) : value = \(resultDict[tmpKey])")
+        return cell
+    }
+    
+    func tableCellEditeCallback( key: CreateEventItemsKeys, _value: AnyObject ) {
+        
+        var value = ""
+        switch ( key )
+        {
+            case .NAME,
+                 .DESCRIPTION,
+                 .LOCATION:
+                value = _value as! String
+            case .DATE:
+                eventDate = _value as? Date
+                value = Utils.getReadableTime(date: eventDate!)
+//            case .LOCATION:
+//                self.location = _value as? CLLocation
+//                value = (location?.description)!
+            case .CATEGORY:
+                selectedCategory = _value as! AvailableCategories
+                value = selectedCategory.getTextValue()
+            case .INVITE:
+                invitations = (_value as? [User])!
+                let usersArray = invitations.map { $0.nik }
+                value = usersArray.joined(separator: ",")
+            default:
+                print("Undefined behavior")
+            
+        }
+        
+        if value == key.getTextValue() {
+            value = ""
+        }
+        
+        resultDict[key] = value
+        print("Edited: key = \(key.getTextValue()) : value = \(resultDict[key]!)")
+        
+        tableView.reloadData()
+    }
+    
+    func setupNavigationItem() {
+        
+        let arrowBackImg = UIImage(named: "close")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        let leftBarButtonItem = UIBarButtonItem(image: arrowBackImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( CreateEventViewController.popToRoot ))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : NAVIGATION_TITLE_COLOR ]
+    }
+    
+    func popToRoot( _ sender:UIBarButtonItem ) {
+        clearForm()
+        tabBarController?.selectedIndex = 0
+    }
+    
+    func clearForm() -> Void {
+        invitations.removeAll()
+        eventDate = nil
+        location = nil
+        selectedCategory = AvailableCategories.NONE
+        
+        resultDict.removeAll()
     }
 }
 

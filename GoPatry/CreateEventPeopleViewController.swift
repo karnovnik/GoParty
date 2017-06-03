@@ -9,204 +9,180 @@
 import UIKit
 
 
-class CreateEventPeopleViewController: UIViewController {
+class CreateEventPeopleViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
     
+    @IBOutlet weak var btnSelectedUsersView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    var dataAndDelegate: PeopleTableViewDataAndDelegate!
-    var returnResultsCallback: (([String]) -> Void)?
+    @IBOutlet weak var btnCreate: UIButton!
     
-    var currentData:[AnyObject]!
+    var key = CreateEventItemsKeys.NONE
+    var returnResultsCallback: ((CreateEventItemsKeys, AnyObject)->Void)?
+    
+    var selectedUsers = [User]()
+    var selectedGroups = [Group]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataAndDelegate = PeopleTableViewDataAndDelegate()
-        tableView.dataSource = dataAndDelegate!
-        tableView.delegate = dataAndDelegate!
+        tableView.dataSource = self
+        tableView.delegate = self
         
         tableView.tableFooterView = UIView()
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.btnSelectedClick(sender:)))
+        btnSelectedUsersView.addGestureRecognizer(gesture)
+        
+        btnCreate.addTarget(self, action:#selector( CreateGroupViewController.onCreateBtn ), for:UIControlEvents.touchDown )
+        btnCreate.setTitle("Сохранить", for: .normal)
+        
+        setupNavigationItem()
     }
    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear( animated )
-        let selectedUsersNik = dataAndDelegate.getSelectedValues().selectedUsers.map{ $0.nik! }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.tabBarController?.tabBar.isHidden = true
+        updateSelectedCount()
+        checkSelectedGroups()
+    }
+    
+    func updateSelectedCount() {
+        (btnSelectedUsersView.viewWithTag(1) as! UILabel).text = "Выбрано \(selectedUsers.count)"
+    }
+    
+    func onCreateBtn( _ sender: BottomButton) {
+        
         if returnResultsCallback != nil {
-            returnResultsCallback!( dataAndDelegate.allSelectedUIDs() )
-        }
-        
-        print( "Selected groups \(dataAndDelegate.getSelectedValues().selectedGroups) \n and selected users \( selectedUsersNik) " )
-    }
-    
-    @IBAction func changeType(sender: UISegmentedControl) {
-        dataAndDelegate?.currentType = AvailableUIType( rawValue: sender.selectedSegmentIndex )!
-        tableView.reloadData()
-    }
-    
-    @IBAction func selectedAll() {
-        dataAndDelegate.selectedAll()
-        tableView.reloadData()
-    }
-    
-    @IBAction func clearAll() {
-        dataAndDelegate.clearAll()
-        tableView.reloadData()
-    }
-}
-
-class PeopleTableViewDataAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
-    
-    private var selectedUsers = Set<User>()
-    private var selectedGroups = Set<String>()
-    
-    var usersList = Model.getInstance().users
-    var currentType = AvailableUIType.FRIENDS
-    var isNeedToAlignment = false
-    var cellTextAlignment = NSTextAlignment.Left
-    
-    var isHaveChanged = false
-    
-    override init() {
-        super.init()
-    }
-    
-    func setSelectedUsers( uids: [String] ) {
-        for user in Model.getInstance().users {
-            if uids.indexOf( user.uid! ) != nil {
-                selectedUsers.insert(user)
-            }
-        }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if currentType == AvailableUIType.FRIENDS {
-            return usersList.count
-        }
-        
-        return Model.getInstance().groups.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableCell
-        
-        if isNeedToAlignment {
-            cell.textLabel?.textAlignment = cellTextAlignment
-        }
-        
-        if currentType == AvailableUIType.FRIENDS {
             
-            cell.icon?.image = IconsStorageManager.getInstance().getIconByUrl(usersList[indexPath.row].photo_url)
-            cell.name?.text = usersList[indexPath.row].nik
-            cell.textLabel?.text = ""
-            if selectedUsers.contains( usersList[indexPath.row] ) {
-                cell.accessoryType = .Checkmark
-            } else {
-                cell.accessoryType = .None
+            returnResultsCallback!( key, selectedUsers as AnyObject )
+        }
+
+        popToRoot()
+    }
+        
+    func checkSelectedGroups() {
+        
+        let selectedUsersUIDs = selectedUsers.map{$0.uid}
+        for group in Model.TheModel.groups {
+            var selected = true
+            for uid in group.members {
+                if !selectedUsersUIDs.contains(uid) {
+                    selected = false
+                    break
+                }
+            }
+            if selected && !selectedGroups.contains(group ) {
+                selectedGroups.append(group)
             }
         }
-        else {
-            cell.icon?.image = nil
-            cell.name?.text = nil
-            cell.textLabel!.text = Model.getInstance().groups[indexPath.row].name!
-            if selectedGroups.contains( Model.getInstance().groups[indexPath.row].name! ) {
-                cell.accessoryType = .Checkmark
-            } else {
-                cell.accessoryType = .None
+    }
+    
+    func btnSelectedClick(sender : UITapGestureRecognizer) {
+        
+        self.performSegue(withIdentifier: "ShowAddPeopleViewSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if segue.identifier == "ShowAddPeopleViewSegue" {
+            if let destinController = segue.destination as? SelectPeopleViewController {
+                
+                destinController.selected = selectedUsers
+                destinController.total = Model.TheModel.users
+                destinController.returnResultsCallback = addPeopleCallback
             }
         }
+    }
+    
+    func addPeopleCallback( selected: [User], hadChanged: Bool ) {
+        
+        selectedUsers = Array(selected)
+        for group in selectedGroups {
+            for uid in group.members {
+                let tmpArray = selectedUsers.filter{$0.uid == uid}
+                if tmpArray.count == 0 {
+                    selectedGroups.remove(at: selectedGroups.index(of:group)!)
+                    break
+                }
+            }
+        }
+        
+        updateSelectedCount()
+        tableView.reloadData()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return Model.TheModel.groups.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! CreateEventGroupViewCell
+        
+        let group = Model.TheModel.groups[indexPath.row]
+        let selected = selectedGroups.contains(group)
+        cell.setData( group: group, selected: selected, selectedCallback: selectGroupCallback )
         
         return cell
     }
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-
-        if tableView.cellForRowAtIndexPath(indexPath)?.accessoryType == .Checkmark {
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
-            if currentType == AvailableUIType.FRIENDS {
-                selectedUsers.remove( usersList[indexPath.row] as User )
-            }
-            else {
-                selectedGroups.remove( Model.getInstance().groups[indexPath.row].name! )
-            }
-        }
-        else {
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
-            if currentType == AvailableUIType.FRIENDS {
-                selectedUsers.insert( usersList[indexPath.row] )
-            }
-            else {
-                selectedGroups.insert( Model.getInstance().groups[indexPath.row].name! )
-            }
+    func selectGroupCallback( group: Group, isSelect: Bool ) {
+        
+        if isSelect {
+            selectGroup( group: group )
+        } else {
+            deselectGroup( group: group)
         }
         
-        isHaveChanged = true
-        return indexPath
+        updateSelectedCount()
     }
     
-//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath
-//        indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-//        // Social Sharing Button
-////        let shareAction = UITableViewRowAction(style:
-////            UITableViewRowActionStyle.Default, title: "Go", handler: { (action,
-////                indexPath) -> Void in
-////                let defaultText = "Just checking in at " +
-////                    partiesData[indexPath.row].title
-////                let activityController = UIActivityViewController(activityItems:
-////                    [defaultText], applicationActivities: nil)
-////                self.presentViewController(activityController, animated: true,
-////                    completion: nil)
-////        })
-//        // Delete button
-//
-//        let deleteAction = UITableViewRowAction(style:
-//            UITableViewRowActionStyle.Default, title: "Delete",handler: { (action,
-//                indexPath) -> Void in
-//                // Delete the row from the data source
-//                //partiesData.removeAtIndex(indexPath.row)
-//                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:
-//                    .Fade)
-//        })
-//
-//
-////        shareAction.backgroundColor = UIColor(red: 28.0/255.0, green: 165.0/255.0,
-////                                             blue: 253.0/255.0, alpha: 1.0)
-//        deleteAction.backgroundColor = UIColor(red: 202.0/255.0, green: 202.0/255.0,
-//                                            blue: 203.0/255.0, alpha: 1.0)
-//
-//        return [deleteAction]//, shareAction]
-//    }
-    
-    func getSelectedValues() -> ( selectedUsers: [User], selectedGroups: [String] ) {
-        return (selectedUsers: Array(selectedUsers), selectedGroups: Array(selectedGroups) )
-    }
-    
-    func selectedAll() {
-        if currentType == AvailableUIType.FRIENDS {
-            for user in usersList {
-                selectedUsers.insert( user )
-            }
-        }
-        else {
-            for group in Model.getInstance().groups {
-                selectedGroups.insert( group.name! )
+    func selectGroup( group: Group ) {
+        if !selectedGroups.contains(group) {
+            selectedGroups.append(group)
+            
+            for uid in group.members {
+                let user = Model.TheModel.getUsersBy(uidsList: [uid])[0]
+                if !selectedUsers.contains(user) {
+                    selectedUsers.append(user)
+                }
             }
         }
     }
     
-    func clearAll() {
-        if currentType == AvailableUIType.FRIENDS {
-           selectedUsers.removeAll()
-        }
-        else {
-            selectedGroups.removeAll()
+    func deselectGroup( group: Group ) {
+        if let index = selectedGroups.index(of: group) {
+            selectedGroups.remove(at: index)
+            
+            for uid in group.members {
+                let user = Model.TheModel.getUsersBy(uidsList: [uid])[0]
+                if let index = selectedUsers.index( of: user ) {
+                    selectedUsers.remove(at: index)
+                }
+            }
         }
     }
     
-    func allSelectedUIDs() -> [String] {
-        var retValue = [String]()
-        retValue = selectedUsers.map{ $0.uid! }
-        for groupID in selectedGroups {
-            retValue.appendContentsOf( Model.getInstance().getGroupMembresBy( groupName: groupID ) )
-        }
+    func setupNavigationItem() {
         
-        return retValue
+        let arrowBackImg = UIImage(named: "Back")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        let leftBarButtonItem = UIBarButtonItem(image: arrowBackImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( CreateEventPeopleViewController.popToRoot ))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : NAVIGATION_TITLE_COLOR ]
+    }
+    
+    func popToRoot() {
+        navigationController!.popViewController(animated: true)
     }
 }
+
