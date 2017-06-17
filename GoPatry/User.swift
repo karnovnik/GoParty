@@ -29,6 +29,9 @@ class User: NSObject {
     var fb_id = ""
     var vk_id = ""
     var photo_url = ""
+    private var e_mail_search = ""
+    private var f_name_search = ""
+    private var s_name_search = ""
     
     var key: String?
     
@@ -56,6 +59,10 @@ class User: NSObject {
         self.fb_id = fb_id ?? ""
         self.vk_id = vk_id ?? ""
         self.photo_url = photo_url ?? ""
+        
+        e_mail_search = Utils.getSearchFieldValue(src: self.e_mail, isEmail: true )
+        f_name_search = Utils.getSearchFieldValue(src: self.f_name )
+        s_name_search = Utils.getSearchFieldValue(src: self.s_name )
     }
     
     func toAnyObject() -> AnyObject {
@@ -66,7 +73,10 @@ class User: NSObject {
             "s_name": s_name,
             "fb_id": fb_id,
             "vk_id": vk_id,
-            "photo_url": photo_url
+            "photo_url": photo_url,
+            "e_mail_search": e_mail_search,
+            "f_name_search": f_name_search,
+            "s_name_search": s_name_search
             ] as NSDictionary
     }
     

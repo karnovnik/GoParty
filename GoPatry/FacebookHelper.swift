@@ -136,7 +136,7 @@ class FacebookHelper {
                             let photoUrl = (data["picture"]!["data"]!! as! [String : AnyObject])["url"]
                             let id = data["id"] as! String
                             
-                            self.ingameFriends.append( User(key: "IngameFriends", nik: fname + " " + lname, e_mail: nil, f_name: fname, s_name: lname, fb_id: id, vk_id: nil, photo_url: photoUrl as! String?) )
+                            self.ingameFriends.append( User(key: "IngameFriends", nik: fname + " " + lname, e_mail: nil,f_name: fname, s_name: lname, fb_id: id, vk_id: nil, photo_url: photoUrl as! String? ) )
                         }
                         
                     } else {
@@ -179,7 +179,7 @@ class FacebookHelper {
                             let photoUrl = (data["picture"]!["data"]!! as! [String : AnyObject])["url"]
                             let id = data["id"] as! String
                             
-                            self.taggableFriends.append( User(key: "TaggableFriends", nik: fname + " " + lname, e_mail: nil, f_name: fname, s_name: lname, fb_id: id, vk_id: nil, photo_url: photoUrl as! String?) )
+                            self.taggableFriends.append( User(key: "TaggableFriends", nik: fname + " " + lname, e_mail: nil, f_name: fname, s_name: lname, fb_id: id, vk_id: nil, photo_url: photoUrl as! String? ) )
                             
 //                            if fname == "Роман" {
 //                                self.ingameFriends.append( User(key: "TaggableFriends", nik: fname + " " + lname, e_mail: nil, f_name: fname, s_name: lname, fb_id: id, vk_id: nil, photo_url: photoUrl as! String?) )

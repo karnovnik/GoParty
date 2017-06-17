@@ -62,7 +62,7 @@ class EventTableViewCell: UITableViewCell {
         
         btnViewController.showCommentsCallback = showCommentsCallback
         btnViewController.onSelectedListCallback = onSelectedListCallback
-        btnViewController.fillView(  event: data, withInvertion: false )
+        btnViewController.fillView(  event: data, withInvertion: true )
     }
         
     @IBOutlet weak var eventLocation: UILabel!

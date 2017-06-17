@@ -174,7 +174,8 @@ class Utils {
         
         let hour = calendar.component(.hour, from: date as Date)
         let minutes = calendar.component(.minute, from: date as Date)
-        outTime = "\(hour):\(minutes)"
+        let minutesStr = minutes < 10 ? "0\(minutes)" : "\(minutes)"
+        outTime = "\(hour):\(minutesStr)"
         
         let day = calendar.component(.day, from: date as Date)
         let month = calendar.component(.month, from: date as Date)
@@ -217,5 +218,26 @@ class Utils {
         let dateObj = dateFormatter.date( from: dateStr )
                
         return dateObj!
+    }
+    
+    static func getSearchFieldValue( src: String, isEmail: Bool = false ) -> String {
+        
+        var result = ""
+        if !(src.isEmpty) {
+            if isEmail {
+                if let index = src.index(of: "@") {
+                    result = src.substring( to: index )
+                    if result.characters.count > 5  {
+                        let index2 = result.index(result.startIndex, offsetBy: 5)
+                        result = result.substring(to: index2)
+                    }
+                }
+            } else {
+                let length = min( 5, (src.characters.count))
+                let index = src.index(src.startIndex, offsetBy: length)
+                result = src.substring( to: index )
+            }
+        }
+        return result.lowercased()
     }
 }

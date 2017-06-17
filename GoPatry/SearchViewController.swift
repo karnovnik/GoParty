@@ -16,13 +16,19 @@ class SearchViewController: UIViewController, FBSDKAppInviteDialogDelegate, UISe
     @IBOutlet weak var btnInviteView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
+ 
     private var REF:  FIRDatabaseReference!
     
-    var usersCollectionViewDAndDS: UsersCollectionViewDelegateAndDataSource!
+    var usersCollectionViewDAndDS = UsersCollectionViewDelegateAndDataSource()
     var filtered: [User]?
     var total: [User]?
+    var filtersHadUsed = [String]()
+    var currentFieldIndex = 0
+    var isSearching = false
+    let searchFields = ["e_mail_search","f_name_search","s_name_search"]
+    var nextFilter = ""
+    
+    var tap: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,22 +38,40 @@ class SearchViewController: UIViewController, FBSDKAppInviteDialogDelegate, UISe
         
         total = Model.TheModel.getScopedUsersWithoutExitsConnection()
         
-        usersCollectionViewDAndDS = UsersCollectionViewDelegateAndDataSource()
-        
         usersCollectionViewDAndDS.dataProvider = total ?? [User]()
         
-        collectionView.dataSource = usersCollectionViewDAndDS!
-        collectionView.delegate = usersCollectionViewDAndDS!
+        collectionView.allowsMultipleSelection = true
+        collectionView.dataSource = usersCollectionViewDAndDS
+        collectionView.delegate = usersCollectionViewDAndDS
         
         REF = FIRDatabase.database().reference(withPath: "users")
-        
-        spinner.isHidden = true;
-        
+         
         searchBar.delegate = self
-        
-        self.hideKeyboardWhenTappedAround()
+          
+        setupNavigationItem()
     }
     
+    func addObserv() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+    }
+    
+    func removeObserv() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if tap != nil {
+            view.removeGestureRecognizer(tap!)
+        }
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap!)
+    }
+        
     func btnInviteClick() {
         let content = FBSDKAppInviteContent()
         let url = FacebookHelper.appDeepLink
@@ -67,142 +91,136 @@ class SearchViewController: UIViewController, FBSDKAppInviteDialogDelegate, UISe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-       collectionView.reloadData()
+        super.viewWillAppear(animated)
+        //self.tabBarController?.tabBar.isHidden = true
+        collectionView.reloadData()
+        addObserv()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        let selected = usersCollectionViewDAndDS.getSelectedValues().map{ $0.uid }
-        if Model.TheModel.connection.tryToAddedSubscriptions( newSubscriptions: selected ) {
-            Model.TheModel.connection.save()
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //self.tabBarController?.tabBar.isHidden = false
+        removeObserv()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filtered = total?.filter({$0.nik.starts(with: searchText)})
+        doFilter( pattern: searchText )
+    }
+    
+    func doFilter( pattern: String, withQuery: Bool = true ) {
+        
+        let patt = pattern.lowercased()
+        filtered = total?.filter({
+            $0.nik.lowercased().starts(with: patt)
+        || $0.e_mail.lowercased().starts(with: patt)
+        || $0.f_name.lowercased().starts(with: patt)
+        || $0.s_name.lowercased().starts(with: patt)})
         
         usersCollectionViewDAndDS.dataProvider = filtered!
         
         self.collectionView.reloadData()
-    }
-    
-    func onSearchOnServer() {
-        if let filterStr = searchBar.text {
-            if filterStr.characters.count >= 4 {
-                searchOnServer( filterStr: filterStr )
-            }
+        
+        if withQuery {
+            searchOnServer( filterStr: pattern.lowercased() )
         }
     }
     
     func searchOnServer( filterStr: String ) {
         
-        print("Search on server: filterStr = \(filterStr)")
-        
-        var foundUsers = getFilteredScopedUsers( filterStr: filterStr )
-        
-        if filterStr.characters.count >= 4 {
-            
-            spinner.isHidden = false;
-            REF.queryOrdered( byChild: "s_name" ).queryEqual(toValue: filterStr).observeSingleEvent(of: .childAdded, with: { snapshot in
-                    
-                print( snapshot )
-                print( snapshot.key )
-                if let value = snapshot.value as? NSDictionary {
-                        
-                    if let user = User.createUserFromSnapshot( inValue: value, key: snapshot.key ) {
-                            
-                        if !foundUsers.contains(where: { $0.f_name == user.f_name }) {
-                            foundUsers.append(user)
-                        }
-                        
-                        self.usersCollectionViewDAndDS.dataProvider = foundUsers
-                        self.collectionView.reloadData()
-                    }
-                    
-                    self.spinner.isHidden = true;
-                }
-            })
+        if filterStr.characters.count < 3 {
+            return
         }
+        
+        if filtersHadUsed.contains( filterStr ) {
+            return
+        }
+        
+        if nextFilter == filterStr {
+            return
+        }
+        
+        //if filterStr.characters.count > nextFilter.characters.count {
+            let length = min( 5, (filterStr.characters.count))
+            let index = filterStr.index(filterStr.startIndex, offsetBy: length)
+            self.nextFilter = filterStr.substring( to: index )
+        //}
+        
+        if isSearching {
+            return
+        }
+        
+        print("Search on server: filterStr = \(filterStr)")
+        isSearching = true
+        currentFieldIndex = 0
+        query( filterStr: filterStr )
+        
     }
     
-    func getFilteredScopedUsers( filterStr: String ) -> [User] {
+    func query( filterStr: String ) {
         
-        var foundUsers = [User]()
-        
-        if total == nil {
-            return foundUsers
+        if currentFieldIndex < 0 || currentFieldIndex >= searchFields.count {
+            return
         }
         
-        if filterStr.characters.count >= 1 {
+        let currentField = searchFields[currentFieldIndex]
+        let filterStrUtf8 = filterStr.utf8
+        print("searching: \(filterStrUtf8), by field: \(currentField)")
+        REF.queryOrdered( byChild: currentField ).queryEqual(toValue: filterStr).observeSingleEvent(of: .value, with:{ snapshot in
             
-            for user in total! {
+            if let value = snapshot.value as? NSDictionary {
                 
-                if user.f_name.range( of: filterStr ) != nil{
-                    foundUsers.append(user)
+                for (key, val) in value {
+                    print( "found user\(val)")
+                    if let user = User.createUserFromSnapshot( inValue: val, key: key as! String ) {
+                        
+                        if !(self.total?.contains(where: { $0.key == user.key }))! {
+                            self.total!.append(user)
+                        }
+                    }
                 }
             }
-         }
-        
-        return foundUsers
+            
+            self.doFilter( pattern: self.searchBar.text!, withQuery: false )
+            
+            self.currentFieldIndex += 1
+            if self.currentFieldIndex >= self.searchFields.count {
+                // went through all field. Search has finished
+                
+                self.isSearching = false
+                
+                if !self.nextFilter.isEmpty {
+                    self.isSearching = true
+                    self.currentFieldIndex = 0
+                    self.query( filterStr: self.nextFilter )
+                    self.nextFilter = ""
+                }
+            } else {
+                self.query( filterStr: filterStr )
+            }
+        })
     }
+    
+    @IBAction func followBtn(_ sender: UIButton) {
+        
+        let selected = usersCollectionViewDAndDS.getSelectedValues().map{ $0.uid }
+        if Model.TheModel.connection.tryToAddedSubscriptions( newSubscriptions: selected ) {
+            Model.TheModel.connection.save()
+        }
+        
+        //popToRoot()
+   }
+    
+    func setupNavigationItem() {
+        
+//        let arrowBackImg = UIImage(named: "Back")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+//        let leftBarButtonItem = UIBarButtonItem(image: arrowBackImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( SearchViewController.popToRoot ))
+//        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : NAVIGATION_TITLE_COLOR ]
+    }
+    
+//    func popToRoot() {
+//        self.navigationController!.popViewController(animated: true)
+//    }
 }
-
-//class SocialFriendsTableViewDataAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
-//    
-//    fileprivate var selectedUsers = Set<String>()
-//    
-//    var usersList: [User]
-//    var isHaveChanged = false
-//    
-//    override init() {
-//        
-//        usersList = FacebookHelper.getInstance().TaggableFriends
-//        
-//        super.init()
-//    }
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return usersList.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
-//                
-//        let socialFrined = usersList[indexPath.row]
-//        
-//        cell.name!.text = usersList[indexPath.row].f_name + " " + usersList[indexPath.row].s_name
-//        
-//        cell.icon?.setData(url: socialFrined.photo_url )
-//            
-//        if selectedUsers.contains( socialFrined.fb_id ) {
-//            cell.accessoryType = .checkmark
-//        }
-//        
-//        return cell
-//    }
-//    
-//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-//        
-//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-//            
-//            selectedUsers.remove( usersList[indexPath.row].fb_id )
-//        } else {
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-//            selectedUsers.insert( usersList[indexPath.row].fb_id )
-//        }
-//        
-//        isHaveChanged = true
-//        return indexPath
-//    }
-//    
-//    func getSelectedValues() -> [String] {
-//        return Array(selectedUsers)
-//    }
-//    
-//    func getAllValues() -> [String] {
-//        return usersList.map({ $0.fb_id })
-//    }
-//    
-//}

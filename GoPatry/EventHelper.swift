@@ -73,17 +73,15 @@ class EventHelper {
                     
                     self.userEvents.append( event )
                     self.userEvents = self.userEvents.sorted(by: { ( $0.time as! Date ) < ( $1.time as! Date ) })
-                    
-                    Model.TheModel.dispatchEvent( event: EVENT_UPDATE )
                 }
             })
         } else {
             
             REF_EVENTS.child( event.key! ).updateChildValues( event.toAnyObject() as! [AnyHashable : Any] )
-            Model.TheModel.dispatchEvent( event: EVENT_UPDATE )
         }
         
         self.sortUserEvents()
+        Model.TheModel.dispatchEvent( event: EVENT_UPDATE )
     }
     
     func removeEvent( event: Event ) {

@@ -101,11 +101,11 @@ class BottomBtnsViewController: UIViewController {
     
         buttons.map{ $0.reset() }
         
-        //if event?.owner_uid != Model.TheModel.currentUser.key {
+        if withInvertion {
             if event?.getCurrentStatus() != .NONE {
                 buttons[(event?.getCurrentStatus().rawValue)! - 1].selected()
             }
-        //}
+        }
         
         buttons[0].setData( count: event?.accepted.count, devotedUserStatus: .ACCEPT )
        

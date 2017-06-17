@@ -110,26 +110,29 @@ class UserHelper {
             }
         }
     }
-//    
-//    func fetchAllUsersDebugOnly( callback: @escaping () -> Void ) {
-//        
-//        REF.observeSingleEvent(of: .value, with: { (snapshot) in
-//            
-//            if let value = snapshot.value as? NSDictionary {
-//                for (key,val) in value {
-//                    if self.scopeUsers.index(where: {$0.key == key}) == nil {
-//                        print(key)
-//                    }
-//                }
-//            }
-//            
-//            callback()
-//            
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
-//        
-//    }
+    
+    func fetchAllUsersDebugOnly( callback: @escaping () -> Void ) {
+        
+        REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let value = snapshot.value as? NSDictionary {
+                for (key,val) in value {
+                    
+                    if let user = User.createUserFromSnapshot( inValue: val, key: key as! String ) {
+                        self.saveUser(user: user)
+                    }
+
+                    
+                }
+            }
+            
+            callback()
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
     
     func findUsersByFBIDsAndAddedToUsers( list: [String] ) -> Void {
         findUsersByFBIDs( list:list, callback: { ( result: [User] ) in

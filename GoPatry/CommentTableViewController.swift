@@ -13,6 +13,8 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
 
     private var REF:  FIRDatabaseReference!
 
+    @IBOutlet weak var textFiledConstrain: NSLayoutConstraint!
+    @IBOutlet weak var inputTextView: UIView!
     
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var textField: UITextField!
@@ -22,9 +24,13 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
     var comments = [Comment]()
     var addedName = ""
     
+    var activeField: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        self.hideKeyboardWhenTappedAround()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -37,7 +43,22 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
         
         addBtn.addTarget(self, action:#selector( CommentTableViewController.addBtnClick ), for:UIControlEvents.touchDown )
         
-         setupNavigationItem()
+        setupNavigationItem()
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.height
+        
+        animateViewMoving( up: false, moveValue: keyboardSize)
+        //self.view.frame.origin.y = 0
+    }
+
+    func keyboardWillShow(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.height
+        
+        animateViewMoving( up: true, moveValue: keyboardSize )
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,12 +73,30 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
         
         self.tabBarController?.tabBar.isHidden = true
         
+        scrollToBottom()
         addObserv()
+    }
+    
+    func scrollToBottom() {
+        if ( comments.count > 0 ) {
+            let indexPath = IndexPath(row: comments.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
     
     func textFieldDidChange(textField: UITextField) {
         let isEmpty = (textField.text?.isEmpty)! || textField.text == addedName
         addBtn.imageView?.image = UIImage( named: isEmpty ? "add people" : "add group")
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        let movementDuration:TimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = self.view.frame.offsetBy(dx: 0,  dy: movement)
+        UIView.commitAnimations()
     }
     
     func addBtnClick(_ sender: UIButton) {
@@ -67,16 +106,17 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
             return
         }
         
-        if !addedName.isEmpty {
-            
-            newText = newText.replacingOccurrences(of: addedName, with: "")
-        }
+//        if !addedName.isEmpty {
+//            
+//            newText = newText.replacingOccurrences(of: addedName, with: "")
+//        }
         
         let comment = Comment( event_key: event_id, user_uid: Model.TheModel.currentUser.uid, date: NSDate(), text: newText )
         print("added comment: \(newText)")
         
         self.comments.append( comment )
         tableView.reloadData()
+        scrollToBottom()
         
         Model.TheModel.addComment( comment: comment )
         
@@ -84,41 +124,11 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
         addedName = ""
     }
     
-//    func addComment( ) {
-//        
-//        let comment = Comment( user_uid: Model.TheModel.currentUser.uid, date: NSDate(), text: "" )
-//        
-//        showAlert( comment: comment, isNew: true )
-//    }
-//    
-//    func showAlert( comment: Comment, isNew: Bool ) {
-//        
-//        let alert = UIAlertController(title: ( isNew ? "New comment" : "Edit comment" ), message: "", preferredStyle: .alert)
-//        
-//        //2. Add the text field. You can configure it however you need.
-//        alert.addTextField { ( textField ) in
-//            textField.placeholder = ( comment.text == "" ? "Some default text" : comment.text )
-//        }
-//        
-//        // 3. Grab the value from the text field, and print it when the user clicks OK.
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-//            let text = alert?.textFields![0].text
-//            if !( (text?.isEmpty)! ) {
-//                comment.text = text!
-//                if isNew {
-//                   self.commentsStruct.comments.append( comment )
-//                }
-//                
-//                Model.TheModel.saveComments( comments: self.commentsStruct )
-//            }
-//        }))
-//        
-//        // 4. Present the alert.
-//        self.present(alert, animated: true, completion: nil)
-//    }
-    
     func addObserv() {
         Model.TheModel.commentsHelper.addObserv(event_key: event_id, callback: observationCallback )
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
     }
     
     func observationCallback( comments: Comments? ) {
@@ -128,11 +138,16 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
             self.comments = (comments?.comments)!
             self.comments.sort(by: { $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970 })
             self.tableView.reloadData()
+            self.scrollToBottom()
         }
     }
     
     func removeObserv() {
         Model.TheModel.commentsHelper.removeObserv(event_key: event_id)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+
     }
         
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -207,7 +222,7 @@ class CommentTableViewController: UIViewController, UITableViewDelegate, UITable
         
         addedName = insertName
         textField.text = insertName + newText
-        
+        textField.becomeFirstResponder()
         
         print("@\(str)")
     }

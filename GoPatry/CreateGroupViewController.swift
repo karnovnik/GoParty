@@ -21,6 +21,8 @@ class CreateGroupViewController: UIViewController {
     
     fileprivate let usersCollectionViewDAndDS = UsersCollectionViewDelegateAndDataSource()
     
+    var tap: UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,21 +47,51 @@ class CreateGroupViewController: UIViewController {
             group = Group()
         }
         
+        collectionView.dataSource = usersCollectionViewDAndDS
+        collectionView.delegate = usersCollectionViewDAndDS
+                
         usersCollectionViewDAndDS.dataProvider = users
         usersCollectionViewDAndDS.selectionEnable = false
         usersCollectionViewDAndDS.firstItemIsBtnCallback = firstItemIsBtnCallback
         usersCollectionViewDAndDS.sectionNumber = 1
-        
-        collectionView.dataSource = usersCollectionViewDAndDS
-        collectionView.delegate = usersCollectionViewDAndDS
-        
-    
+     
         setupNavigationItem()
+    }
+    
+    override func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func addObserv() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+    }
+    
+    func removeObserv() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if tap != nil {
+            view.removeGestureRecognizer(tap!)
+        }
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        addObserv()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObserv()
     }
     
     func firstItemIsBtnCallback() {

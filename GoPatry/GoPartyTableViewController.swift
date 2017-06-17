@@ -16,6 +16,7 @@ class GoPartyTableViewController: UITableViewController {
     
     var selectedLocation: CLLocation?
     var currentEventKey: String?
+    var isFirstApperance = true
             
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,7 @@ class GoPartyTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : NAVIGATION_TITLE_COLOR ]
     }
     
-    func refresh()
-    {
+    func refresh() {
         Model.TheModel.refreshEvent()
     }
     
@@ -41,7 +41,19 @@ class GoPartyTableViewController: UITableViewController {
         events = Model.TheModel.getEvents()
         tableView.reloadData()
         
-        self.tableView.separatorStyle = .none
+        if isFirstApperance {
+            isFirstApperance = false
+            let nearestEventKey = Model.TheModel.getNearestEventKey()
+            if nearestEventKey != "" {
+                let index = events.index(where: {$0.key == nearestEventKey})
+                
+                //DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                    let indexPath = IndexPath(row: index!, section: 0)
+                    //self.tableView.decelerationRate = UIScrollViewDecelerationRateNormal
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                //}
+            }
+        }
     }
     
     func eventHandler( eventType: String ) {

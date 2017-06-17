@@ -240,6 +240,7 @@ class Model {
         }
         
         userHelper.preventedFetch( callback: usersLoadedCallback )
+        //userHelper.fetchAllUsersDebugOnly( callback: usersLoadedCallback )
     }
     
     func usersLoadedCallback() {
@@ -357,6 +358,40 @@ class Model {
         return nil
     }
     
+    func getNearestEventKey() -> String {
+        var tmpDict = Dictionary<String, Int>()
+       
+        var hasFutureEvent = false
+        for event in events {
+            
+            let elapsed = Int( NSDate().timeIntervalSince(event.time as! Date) )
+            if elapsed > 0 {
+                hasFutureEvent = true
+            }
+            tmpDict[event.key!] = elapsed
+        }
+        
+        var minDistance = Int.max
+        var returnValue = ""
+        for (key, value) in tmpDict {
+            
+            if hasFutureEvent {
+                if value > 0 && minDistance > value {
+                    returnValue = key
+                    minDistance = value
+                }
+            } else {
+                if minDistance > abs(value) {
+                    returnValue = key
+                    minDistance = value
+                }
+            }
+            
+        }
+        
+        return returnValue
+    }
+    
     func addActualUserEventsToEventsList( userUID: String ) {
         if let user = userHelper.getUserByUID( uid: userUID ) {
             eventHelper.addActualUserEventsToEventsList( user:  user )
@@ -402,6 +437,15 @@ class Model {
     
     func addSubscription( uid: String ) {
         connectionsHelper.addSubscription( uid: uid )
+    }
+    
+    func getFollowersList() -> [User] {
+        var returnValue = [User]()
+        if connection.followers.count > 0 {
+            returnValue = users.filter({connection.followers.contains($0.key!)})
+        }
+        
+        return returnValue;
     }
     
     // comments

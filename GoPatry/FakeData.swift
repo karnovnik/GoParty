@@ -36,7 +36,7 @@ class FakeData {
         var result = [User]()
         for i in 0...10 {
             let fbID = fakeIds.randomItem()
-            let user = User(key: fbID, nik: fbID, e_mail: fbID, f_name: "FakeU" + String(i), s_name: nil, fb_id: fbID, vk_id: nil, photo_url: getFBPhotoUrl( fbID ))
+            let user = User(key: fbID, nik: fbID, e_mail: fbID, f_name: "FakeU" + String(i), s_name: nil, fb_id: fbID, vk_id: nil, photo_url: getFBPhotoUrl( fbID ) )
             result.append( user )
         }
         

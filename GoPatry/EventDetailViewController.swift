@@ -239,9 +239,11 @@ class EventDetailViewController: UIViewController {
     
     func setupNavigationItem() {
         
-        let editImg = UIImage(named: "edit icon")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
-        let rightBarButtonItem = UIBarButtonItem(image: editImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( EventDetailViewController.onRightBtnClick ) )
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        if event?.owner_uid == Model.TheModel.currentUser.key {
+            let editImg = UIImage(named: "edit icon")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+            let rightBarButtonItem = UIBarButtonItem(image: editImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( EventDetailViewController.onRightBtnClick ) )
+            self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        }
         
         let arrowBackImg = UIImage(named: "Back")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         let leftBarButtonItem = UIBarButtonItem(image: arrowBackImg, style: UIBarButtonItemStyle.plain, target: self, action: #selector( EventDetailViewController.popToRoot ))
@@ -263,6 +265,6 @@ class EventDetailViewController: UIViewController {
         btnViewController.onSelectedListCallback = onSelectedListCallback
         btnViewController.createView()
         
-        btnViewController.fillView( event: event!, withInvertion: true )
+        btnViewController.fillView( event: event!, withInvertion: false )
     }
 }

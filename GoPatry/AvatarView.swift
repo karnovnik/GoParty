@@ -63,7 +63,9 @@ class AvatarView: UIImageView {
     }
     
     func stopTrying() {
-        spinner!.removeFromSuperview()
+        if spinner != nil {
+            spinner!.removeFromSuperview()
+        }
         if attempTimer != nil {
             attempTimer?.invalidate()
             attempTimer = nil
