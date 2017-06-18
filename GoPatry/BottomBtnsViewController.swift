@@ -28,10 +28,11 @@ class BottomBtnsViewController: UIViewController {
     func createView() {
         
         let borderSize: CGFloat = 2
-        let btnWidth = ( view.frame.width - borderSize * 3 ) / 4
-        let remains: CGFloat = view.frame.width - (btnWidth * 4 + borderSize * 3)
+        let width = UIScreen.main.bounds.width - 28
+        let btnWidth = ( width - borderSize * 3 ) / 4
+        let remains: CGFloat = width - (btnWidth * 4 + borderSize * 3)
 
-        btnGo = BottomButton( value: Int(borderSize) )
+        btnGo = BottomButton()
         if withHandleCountBtn {
             btnGo!.addTarget(self, action:#selector( BottomBtnsViewController.onCountBtn ), for:UIControlEvents.touchDown )
         }
@@ -58,7 +59,7 @@ class BottomBtnsViewController: UIViewController {
         
         
         var border = CALayer()
-        border.frame = CGRect.init(x: 0, y: 0, width: Int(view.frame.width), height: Int( borderSize) )
+        border.frame = CGRect.init(x: 0, y: 0, width: Int(width), height: Int( borderSize) )
         border.backgroundColor = BORDER_COLOR.cgColor
         view.layer.addSublayer(border)
         

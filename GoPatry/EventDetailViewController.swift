@@ -60,12 +60,14 @@ class EventDetailViewController: UIViewController {
         collectionView.dataSource = dataAndDelegate
         collectionView.delegate = dataAndDelegate
         
-        setupBottomView()
+        //setupBottomView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setupBottomView()
+
         btnViewController.updateCounts()
     }
     func eventHandler( eventType: String ) {

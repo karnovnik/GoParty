@@ -654,7 +654,7 @@
 				);
 				INFOPLIST_FILE = GoPatry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.countdown.GoPatryTest;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.countdownZ.GoPartyTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -682,7 +682,7 @@
 				);
 				INFOPLIST_FILE = GoPatry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.countdown.GoPatryTest;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.countdownZ.GoPartyTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;

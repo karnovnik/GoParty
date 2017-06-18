@@ -13,7 +13,7 @@ class BottomButton: UIButton {
     var smallLabel: UILabel!
     var devotedUserStatus: AvailableUserStatus = .NONE
     
-    required init(value: Int = 0) {
+    required init() {
         super.init(frame: .zero)
         
         self.titleLabel?.font = UIFont( name: (titleLabel?.font.fontName)!, size: 22 )

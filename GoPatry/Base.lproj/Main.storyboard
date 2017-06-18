@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dco-Sh-E8h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dco-Sh-E8h">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -326,7 +326,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Вы и еще 222 человек идут на событие" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MBq-Lt-e4b">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы и еще 222 человек идут на событие" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MBq-Lt-e4b">
                                 <rect key="frame" x="15" y="439" width="291" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="Ztd-K2-Qu1"/>
@@ -335,7 +335,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gsa-Fe-lHH">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gsa-Fe-lHH">
                                 <rect key="frame" x="16" y="471" width="288" height="81"/>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.93333333330000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b4l-Co-FDK">
@@ -393,14 +393,14 @@
                         <color key="backgroundColor" red="0.91764705879999997" green="0.93333333330000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="l3R-vf-vyb" firstAttribute="leading" secondItem="7Ua-AH-0Z8" secondAttribute="leadingMargin" constant="-2" id="4Us-v3-5mI"/>
-                            <constraint firstItem="MBq-Lt-e4b" firstAttribute="top" secondItem="l3R-vf-vyb" secondAttribute="bottom" constant="8" symbolic="YES" id="9Cd-23-MyB"/>
+                            <constraint firstItem="MBq-Lt-e4b" firstAttribute="top" secondItem="l3R-vf-vyb" secondAttribute="bottom" constant="14.5" id="9Cd-23-MyB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MBq-Lt-e4b" secondAttribute="trailing" constant="-2" id="CZl-Nc-1Y2"/>
                             <constraint firstItem="l3R-vf-vyb" firstAttribute="top" secondItem="Kza-Td-N1E" secondAttribute="bottom" constant="15" id="IZI-zE-Pjt"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="gsa-Fe-lHH" secondAttribute="bottom" constant="6" id="IfZ-ac-E2x"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="gsa-Fe-lHH" secondAttribute="bottom" constant="16" id="IfZ-ac-E2x"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gsa-Fe-lHH" secondAttribute="trailing" id="Mod-gS-na2"/>
                             <constraint firstItem="gsa-Fe-lHH" firstAttribute="top" secondItem="MBq-Lt-e4b" secondAttribute="bottom" constant="1" id="R7H-1c-afT"/>
-                            <constraint firstItem="MBq-Lt-e4b" firstAttribute="top" secondItem="06z-aA-AA0" secondAttribute="bottom" constant="7.5" id="T1P-xg-Lmi"/>
-                            <constraint firstItem="MBq-Lt-e4b" firstAttribute="leading" secondItem="7Ua-AH-0Z8" secondAttribute="leadingMargin" constant="-2" id="UkU-N9-d3Q"/>
+                            <constraint firstItem="MBq-Lt-e4b" firstAttribute="top" secondItem="06z-aA-AA0" secondAttribute="bottom" constant="14" id="T1P-xg-Lmi"/>
+                            <constraint firstItem="MBq-Lt-e4b" firstAttribute="leading" secondItem="7Ua-AH-0Z8" secondAttribute="leadingMargin" constant="-1" id="UkU-N9-d3Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="l3R-vf-vyb" secondAttribute="trailing" constant="-2" id="quq-d7-VKp"/>
                             <constraint firstAttribute="leadingMargin" secondItem="gsa-Fe-lHH" secondAttribute="leading" id="qyG-Pg-Xk7"/>
                         </constraints>
@@ -444,7 +444,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RFj-Mq-jK4" id="Twh-Om-qe1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5c-43-umf" customClass="AvatarView" customModule="GoPatry" customModuleProvider="target">
@@ -2125,7 +2125,7 @@
         <image name="subscribes_tab_active" width="19" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gmG-1Q-5d7"/>
         <segue reference="oQb-lH-8RI"/>
+        <segue reference="gmG-1Q-5d7"/>
     </inferredMetricsTieBreakers>
 </document>

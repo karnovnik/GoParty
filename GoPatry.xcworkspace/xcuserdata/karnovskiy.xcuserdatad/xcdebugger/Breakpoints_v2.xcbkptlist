@@ -1978,7 +1978,7 @@
                   moduleName = "GoPatry"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/FacebookHelper.swift"
-                  timestampString = "519372074.1988"
+                  timestampString = "519462809.408218"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "226"
@@ -1993,7 +1993,7 @@
                   moduleName = "GoPatry"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/FacebookHelper.swift"
-                  timestampString = "519372074.201176"
+                  timestampString = "519462809.410672"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "226"
@@ -3002,11 +3002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EventDetailViewController.swift"
-            timestampString = "518254135.653506"
+            timestampString = "519457117.773792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "EventDetailViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -3226,11 +3226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/BottomBtnsViewController.swift"
-            timestampString = "511612774.441719"
+            timestampString = "519460207.761932"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "createView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3290,11 +3290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/BottomBtnsViewController.swift"
-            timestampString = "511612774.441719"
+            timestampString = "519460207.761932"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "createView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3338,11 +3338,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/BottomBtnsViewController.swift"
-            timestampString = "518170488.785947"
+            timestampString = "519460207.761932"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "onCountBtn(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3386,11 +3386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/EventDetailViewController.swift"
-            timestampString = "518254135.653506"
+            timestampString = "519457117.773792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "showDeleteAlert()"
             landmarkType = "7">
          </BreakpointContent>
@@ -5536,6 +5536,38 @@
             startingLineNumber = "248"
             endingLineNumber = "248"
             landmarkName = "usersLoadedCallback()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoPatry/BottomBtnsViewController.swift"
+            timestampString = "519460207.761932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "createView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoPatry/BottomBtnsViewController.swift"
+            timestampString = "519460207.761932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "createView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
