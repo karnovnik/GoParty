@@ -99,9 +99,9 @@ class CreateViewTitleItem: UITableViewCell, UITextViewDelegate {
 //        case .LOCATION:
 //            tableViewController!.performSegue(withIdentifier: "ShowLocationSegue", sender: self)
 //            return false;
-        case .CATEGORY:
-            tableViewController!.performSegue(withIdentifier: "ShowSelectTypeSegue", sender: self)
-            return false;
+//        case .CATEGORY:
+//            tableViewController!.performSegue(withIdentifier: "ShowSelectTypeSegue", sender: self)
+//            return false;
         case .INVITE:
             tableViewController!.performSegue(withIdentifier: "ShowSelectPeopleView", sender: self)
             return false;

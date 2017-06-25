@@ -26,6 +26,7 @@
 		DD02740A1EBEE65E0038B98F /* AvatarCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0274091EBEE65E0038B98F /* AvatarCollectionCell.swift */; };
 		DD02740C1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD02740B1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift */; };
 		DD11796C1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11796B1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift */; };
+		DD15709B1EFFC74500492A0F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD15709A1EFFC74500492A0F /* SettingsViewController.swift */; };
 		DD159CB91E3C587100A056FE /* DebugLoggerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD159CB81E3C587100A056FE /* DebugLoggerHelper.swift */; };
 		DD159CBB1E506BB100A056FE /* CreateEventTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD159CBA1E506BB100A056FE /* CreateEventTypeViewController.swift */; };
 		DD1F03A71D7A97D200211CAB /* GoPartyServerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD1F03A51D7A97D200211CAB /* GoPartyServerModel.xcdatamodeld */; };
@@ -93,6 +94,7 @@
 		DD0274091EBEE65E0038B98F /* AvatarCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarCollectionCell.swift; sourceTree = "<group>"; };
 		DD02740B1EBEEE130038B98F /* UsersCollectionViewDelegateAndDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersCollectionViewDelegateAndDataSource.swift; sourceTree = "<group>"; };
 		DD11796B1ECFF4D8007DBD76 /* CreateEventGroupViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventGroupViewCell.swift; sourceTree = "<group>"; };
+		DD15709A1EFFC74500492A0F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DD159CB81E3C587100A056FE /* DebugLoggerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLoggerHelper.swift; sourceTree = "<group>"; };
 		DD159CBA1E506BB100A056FE /* CreateEventTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTypeViewController.swift; sourceTree = "<group>"; };
 		DD1F03A61D7A97D200211CAB /* GoPartyServerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoPartyServerModel.xcdatamodel; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				DD504F4F1DE0232D00BD3B58 /* timelineView */,
 				844D4C441D5741D200039352 /* Assets.xcassets */,
 				84195DE91D69D0AD0053ADB8 /* SupportsFiles */,
+				DD15709C1EFFC74A00492A0F /* settings */,
 			);
 			path = GoPatry;
 			sourceTree = "<group>";
@@ -213,6 +216,14 @@
 				A939B34AD83B8D76C777394F /* Pods-GoPatry.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DD15709C1EFFC74A00492A0F /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				DD15709A1EFFC74500492A0F /* SettingsViewController.swift */,
+			);
+			name = settings;
 			sourceTree = "<group>";
 		};
 		DD504F3F1DCC4A2B00BD3B58 /* model */ = {
@@ -492,6 +503,7 @@
 				DD504F4D1DCF086300BD3B58 /* CommonConstants.swift in Sources */,
 				DD504F3E1DCC49FA00BD3B58 /* GroupHelper.swift in Sources */,
 				844D4C501D57421E00039352 /* GoPartyTableViewController.swift in Sources */,
+				DD15709B1EFFC74500492A0F /* SettingsViewController.swift in Sources */,
 				DD1F03CC1D7BE60B00211CAB /* Enums.swift in Sources */,
 				DD3AE50C1D97E529008F8DC2 /* LocationManager.swift in Sources */,
 				841E6DF51D62EC7B00B70F8F /* EventDetailViewController.swift in Sources */,

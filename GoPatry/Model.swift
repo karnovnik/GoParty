@@ -136,7 +136,10 @@ class Model {
         //LOG(text: "Model::Init", sendImmediatly: true)
         
         if let user = FIRAuth.auth()?.currentUser {
-            if user.uid == "j4kqwjpgSfZ8dDGDpZDU3RAplO92" {
+            if user.uid == "j4kqwjpgSfZ8dDGDpZDU3RAplO92"
+                //|| user.uid == "3IaPDLve38MldEdn4WgJBSqJy9u1"
+                //|| user.uid == "2OHcZEkunxWhrA7vG2Mu0ictcZs2"
+            {
                 
                 try! FIRAuth.auth()!.signOut()
                 return

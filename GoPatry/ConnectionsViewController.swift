@@ -75,8 +75,10 @@ class ConnectionsDataAndDelegate: NSObject, UITableViewDataSource, UITableViewDe
     func updateUserList() {
         usersList = Model.TheModel.getUsersBy(uidsList: Model.TheModel.connection.getСonsolidatedUniqList() )
         usersList = Array( Set( usersList + Model.TheModel.users ) )
-        if let index = usersList.index(of: Model.TheModel.currentUser) {
-            usersList.remove(at: index )
+        if Model.TheModel.currentUser != nil {
+            if let index = usersList.index(of: Model.TheModel.currentUser) {
+                usersList.remove(at: index )
+            }
         }
     }
     

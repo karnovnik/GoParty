@@ -1,0 +1,222 @@
+
+/* Class = "UIViewController"; title = "Group"; ObjectID = "0dW-Sv-u8q"; */
+"0dW-Sv-u8q.title" = "Group";
+
+/* Class = "UINavigationItem"; title = "Поиск"; ObjectID = "1A0-Ij-d3j"; */
+"1A0-Ij-d3j.title" = "Поиск";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "1Gx-as-gac"; */
+"1Gx-as-gac.normalTitle" = "Sign In";
+
+/* Class = "UINavigationItem"; title = "Подписки"; ObjectID = "2LK-xY-IRp"; */
+"2LK-xY-IRp.title" = "Подписки";
+
+/* Class = "UITextField"; placeholder = "Enter e-mail"; ObjectID = "31a-qu-cgY"; */
+"31a-qu-cgY.placeholder" = "Enter e-mail";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "4wA-Kb-xoS"; */
+"4wA-Kb-xoS.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5Pz-4O-BzT"; */
+"5Pz-4O-BzT.text" = "Label";
+
+/* Class = "UIViewController"; title = "New group"; ObjectID = "5im-vi-3L6"; */
+"5im-vi-3L6.title" = "New group";
+
+/* Class = "UILabel"; text = "В группе 12 человек"; ObjectID = "645-Mc-jVX"; */
+"645-Mc-jVX.text" = "В группе 12 человек";
+
+/* Class = "UILabel"; text = "Выбрано 21"; ObjectID = "9Qe-XT-5Pr"; */
+"9Qe-XT-5Pr.text" = "Выбрано 21";
+
+/* Class = "UILabel"; text = "Музыка"; ObjectID = "AKd-MN-yJw"; */
+"AKd-MN-yJw.text" = "Музыка";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BCJ-MN-9pO"; */
+"BCJ-MN-9pO.text" = "Label";
+
+/* Class = "UILabel"; text = "В группе 12 человек"; ObjectID = "CGB-cc-lJH"; */
+"CGB-cc-lJH.text" = "В группе 12 человек";
+
+/* Class = "UILabel"; text = "27 февраля"; ObjectID = "DqX-Se-AiH"; */
+"DqX-Se-AiH.text" = "27 февраля";
+
+/* Class = "UIButton"; normalTitle = "Подписаться"; ObjectID = "Dvy-wq-9FS"; */
+"Dvy-wq-9FS.normalTitle" = "Подписаться";
+
+/* Class = "UILabel"; text = "Название"; ObjectID = "FdV-Qf-IEN"; */
+"FdV-Qf-IEN.text" = "Название";
+
+/* Class = "UILabel"; text = "19:00"; ObjectID = "GDq-h1-AKp"; */
+"GDq-h1-AKp.text" = "19:00";
+
+/* Class = "UINavigationItem"; title = " События"; ObjectID = "I6O-Mc-dyP"; */
+"I6O-Mc-dyP.title" = " События";
+
+/* Class = "UILabel"; text = "27 февраля"; ObjectID = "Io6-Lt-COE"; */
+"Io6-Lt-COE.text" = "27 февраля";
+
+/* Class = "UINavigationItem"; title = "Добавить группу"; ObjectID = "JHP-Qd-vuh"; */
+"JHP-Qd-vuh.title" = "Добавить группу";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Jeq-4N-X1Z"; */
+"Jeq-4N-X1Z.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LgB-k2-Bqm"; */
+"LgB-k2-Bqm.text" = "Label";
+
+/* Class = "UILabel"; text = "Вы и еще 222 человек идут на событие"; ObjectID = "MBq-Lt-e4b"; */
+"MBq-Lt-e4b.text" = "Вы и еще 222 человек идут на событие";
+
+/* Class = "UIButton"; normalTitle = "Создать"; ObjectID = "MNG-h0-yuu"; */
+"MNG-h0-yuu.normalTitle" = "Создать";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "NaO-E7-4GL"; */
+"NaO-E7-4GL.text" = "Title";
+
+/* Class = "UILabel"; text = "Пригласить друзей из соц. сетей"; ObjectID = "Ngx-ii-Xa5"; */
+"Ngx-ii-Xa5.text" = "Пригласить друзей из соц. сетей";
+
+/* Class = "UIButton"; normalTitle = "Создать"; ObjectID = "NuZ-K7-Bo6"; */
+"NuZ-K7-Bo6.normalTitle" = "Создать";
+
+/* Class = "UINavigationController"; title = "Add Friends Scene NavCon"; ObjectID = "OF0-tm-9DU"; */
+"OF0-tm-9DU.title" = "Add Friends Scene NavCon";
+
+/* Class = "UILabel"; text = "Приглашенных"; ObjectID = "P3s-Bl-Ihu"; */
+"P3s-Bl-Ihu.text" = "Приглашенных";
+
+/* Class = "UIViewController"; title = "Выбрать местоположение"; ObjectID = "Qza-dr-2IZ"; */
+"Qza-dr-2IZ.title" = "Выбрать местоположение";
+
+/* Class = "UILabel"; text = "Музыка"; ObjectID = "R9X-GZ-t4J"; */
+"R9X-GZ-t4J.text" = "Музыка";
+
+/* Class = "UIViewController"; title = "Выбрать дату и время"; ObjectID = "RL8-Ee-OXs"; */
+"RL8-Ee-OXs.title" = "Выбрать дату и время";
+
+/* Class = "UIButton"; normalTitle = "Создать"; ObjectID = "SM3-iY-Bd5"; */
+"SM3-iY-Bd5.normalTitle" = "Создать";
+
+/* Class = "UINavigationItem"; title = "Группы"; ObjectID = "UhK-oQ-ivH"; */
+"UhK-oQ-ivH.title" = "Группы";
+
+/* Class = "UINavigationController"; title = "GoParty Navigator"; ObjectID = "VIx-EW-MEz"; */
+"VIx-EW-MEz.title" = "GoParty Navigator";
+
+/* Class = "UIViewController"; title = "LoginView"; ObjectID = "Ven-cO-Fbh"; */
+"Ven-cO-Fbh.title" = "LoginView";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WJ0-SG-3oe"; */
+"WJ0-SG-3oe.text" = "Label";
+
+/* Class = "UILabel"; text = "Группы"; ObjectID = "X8g-UX-tMB"; */
+"X8g-UX-tMB.text" = "Группы";
+
+/* Class = "UIViewController"; title = "Выбрать людей"; ObjectID = "Xjg-91-Xnp"; */
+"Xjg-91-Xnp.title" = "Выбрать людей";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YE5-xE-63q"; */
+"YE5-xE-63q.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Z2C-Ao-XH1"; */
+"Z2C-Ao-XH1.text" = "Label";
+
+/* Class = "UIViewController"; title = "Add people to group"; ObjectID = "Zvq-5l-Oba"; */
+"Zvq-5l-Oba.title" = "Add people to group";
+
+/* Class = "UINavigationController"; title = "Subscribers Navigator"; ObjectID = "aJj-za-8Yx"; */
+"aJj-za-8Yx.title" = "Subscribers Navigator";
+
+/* Class = "UILabel"; text = "Марина"; ObjectID = "b1e-Yv-671"; */
+"b1e-Yv-671.text" = "Марина";
+
+/* Class = "UILabel"; text = "Трибьют-шоу \"Mettalica с симфоническим оркестром\" метталисты, чья музыка с успехом исполняется по всему миру с симфонческими оркестрами"; ObjectID = "bFI-Wr-bgW"; */
+"bFI-Wr-bgW.text" = "Трибьют-шоу \"Mettalica с симфоническим оркестром\" метталисты, чья музыка с успехом исполняется по всему миру с симфонческими оркестрами";
+
+/* Class = "UINavigationItem"; title = "Создать событие"; ObjectID = "bts-1K-uji"; */
+"bts-1K-uji.title" = "Создать событие";
+
+/* Class = "UITextField"; placeholder = "Комментировать"; ObjectID = "dct-k6-k8N"; */
+"dct-k6-k8N.placeholder" = "Комментировать";
+
+/* Class = "UILabel"; text = "Трибьют-шоу \"Mettalica с симфоническим оркестром\""; ObjectID = "dh2-qA-fU5"; */
+"dh2-qA-fU5.text" = "Трибьют-шоу \"Mettalica с симфоническим оркестром\"";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "f49-XV-hSo"; */
+"f49-XV-hSo.text" = "Time";
+
+/* Class = "UIViewController"; title = "CreateEventView "; ObjectID = "fP3-5a-bsY"; */
+"fP3-5a-bsY.title" = "CreateEventView ";
+
+/* Class = "UILabel"; text = "Музыка, культура"; ObjectID = "gFh-5d-FWV"; */
+"gFh-5d-FWV.text" = "Музыка, культура";
+
+/* Class = "UILabel"; text = "ЦВЗ \"Манеж\", Манежная пл., д.1"; ObjectID = "gbs-K3-w4Q"; */
+"gbs-K3-w4Q.text" = "ЦВЗ \"Манеж\", Манежная пл., д.1";
+
+/* Class = "UIViewController"; title = "Subscribes & Groups"; ObjectID = "hGf-yd-au4"; */
+"hGf-yd-au4.title" = "Subscribes & Groups";
+
+/* Class = "UIViewController"; title = "Выбрать категорию"; ObjectID = "iKS-td-2Zv"; */
+"iKS-td-2Zv.title" = "Выбрать категорию";
+
+/* Class = "UIViewController"; title = "Settings"; ObjectID = "iti-ez-E9U"; */
+"iti-ez-E9U.title" = "Settings";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "j2R-E0-nnh"; */
+"j2R-E0-nnh.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "ksm-wa-PTH"; */
+"ksm-wa-PTH.title" = "Back";
+
+/* Class = "UINavigationController"; title = "Create Event Navigator"; ObjectID = "l3G-Ng-ceD"; */
+"l3G-Ng-ceD.title" = "Create Event Navigator";
+
+/* Class = "UIButton"; normalTitle = "Создать"; ObjectID = "oLK-ok-KQb"; */
+"oLK-ok-KQb.normalTitle" = "Создать";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et "; ObjectID = "od4-YS-TPM"; */
+"od4-YS-TPM.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et ";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "p6r-9w-8gS"; */
+"p6r-9w-8gS.title" = "Title";
+
+/* Class = "UILabel"; text = "19:00"; ObjectID = "pNL-2g-M3x"; */
+"pNL-2g-M3x.text" = "19:00";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "pck-7W-Bnf"; */
+"pck-7W-Bnf.text" = "Date";
+
+/* Class = "UIViewController"; title = "Комментарии"; ObjectID = "qBe-Pk-KhE"; */
+"qBe-Pk-KhE.title" = "Комментарии";
+
+/* Class = "UIViewController"; title = "Invite Social Friends"; ObjectID = "qL4-50-bRL"; */
+"qL4-50-bRL.title" = "Invite Social Friends";
+
+/* Class = "UITextField"; placeholder = "Enter password"; ObjectID = "sHL-IJ-VTc"; */
+"sHL-IJ-VTc.placeholder" = "Enter password";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sho-eI-uZF"; */
+"sho-eI-uZF.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Ответить"; ObjectID = "tcF-br-ypq"; */
+"tcF-br-ypq.normalTitle" = "Ответить";
+
+/* Class = "UINavigationItem"; title = "Комментарии"; ObjectID = "u9y-7e-tGb"; */
+"u9y-7e-tGb.title" = "Комментарии";
+
+/* Class = "UIViewController"; title = "Search"; ObjectID = "vfI-jZ-MLi"; */
+"vfI-jZ-MLi.title" = "Search";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vqD-nU-227"; */
+"vqD-nU-227.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Выбрать"; ObjectID = "wV9-UR-wK6"; */
+"wV9-UR-wK6.title" = "Выбрать";
+
+/* Class = "UILabel"; text = "Добавить людей в группу"; ObjectID = "xXe-Fn-xhP"; */
+"xXe-Fn-xhP.text" = "Добавить людей в группу";
+
+/* Class = "UILabel"; text = "Дома"; ObjectID = "zwC-JJ-PGa"; */
+"zwC-JJ-PGa.text" = "Дома";

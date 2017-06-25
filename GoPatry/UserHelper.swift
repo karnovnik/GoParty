@@ -211,9 +211,9 @@ class UserHelper {
             }
         }
         
-        if callback != nil {
-            callback!( nil )
-        }
+        //if callback != nil {
+        //    callback!( nil )
+        //}
     }
     
     func singUpByFacebook( callback: (( _ user: FIRUser? ) -> Void)? ) {

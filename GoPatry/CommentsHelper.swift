@@ -122,6 +122,10 @@ class CommentsHelper {
         
         var eventCount = events_keys.count
         var result = Dictionary<String, Int>()
+        if eventCount == 0 {
+            callback( result )
+            return
+        }
         for event_key in events_keys {
             REF.child( event_key ).child("count").observeSingleEvent(of: .value, with: { (snapshot) in
                 

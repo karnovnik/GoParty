@@ -138,14 +138,14 @@ class CreateEventViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         
-        if segue.identifier == "ShowSelectTypeSegue" {
-            if let destinController = segue.destination as? CreateEventTypeViewController {
-                
-                destinController.selectedCategory = selectedCategory
-                destinController.key = CreateEventItemsKeys.CATEGORY
-                destinController.returnResultsCallback = tableCellEditeCallback
-            }
-        }
+//        if segue.identifier == "ShowSelectTypeSegue" {
+//            if let destinController = segue.destination as? CreateEventTypeViewController {
+//                
+//                destinController.selectedCategory = selectedCategory
+//                destinController.key = CreateEventItemsKeys.CATEGORY
+//                destinController.returnResultsCallback = tableCellEditeCallback
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -180,9 +180,9 @@ class CreateEventViewController: UIViewController, UITableViewDataSource, UITabl
 //            case .LOCATION:
 //                self.location = _value as? CLLocation
 //                value = (location?.description)!
-            case .CATEGORY:
-                selectedCategory = _value as! AvailableCategories
-                value = selectedCategory.getTextValue()
+//            case .CATEGORY:
+//                selectedCategory = _value as! AvailableCategories
+//                value = selectedCategory.getTextValue()
             case .INVITE:
                 invitations = (_value as? [User])!
                 let usersArray = invitations.map { $0.nik }

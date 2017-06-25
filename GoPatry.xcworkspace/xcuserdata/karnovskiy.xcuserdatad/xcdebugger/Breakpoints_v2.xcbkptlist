@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Downloads/Grocr-final/Grocr/LoginViewController.swift"
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "515920118.007752"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "continueLoading(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "515920118.007752"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "groupLoadedCallback()"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "519371901.679514"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "usersLoadedCallback()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1226,11 +1226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "517679860.651148"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "commentsAmountLoadedCallack(result:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1754,11 +1754,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "515920118.007752"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "continueLoading(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1802,11 +1802,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "519371901.679514"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "singInCurrentUserBy(email:pass:)"
             landmarkType = "7">
             <Locations>
@@ -1850,11 +1850,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "515920118.007752"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "commentsAmountLoadedCallack(result:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1978,7 +1978,7 @@
                   moduleName = "GoPatry"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/FacebookHelper.swift"
-                  timestampString = "519462809.408218"
+                  timestampString = "520080344.632277"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "226"
@@ -1993,7 +1993,7 @@
                   moduleName = "GoPatry"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/FacebookHelper.swift"
-                  timestampString = "519462809.410672"
+                  timestampString = "520080344.634833"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "226"
@@ -3034,11 +3034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "515920118.007752"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4330,11 +4330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "516558772.787482"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4602,11 +4602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/CommentsHelper.swift"
-            timestampString = "518167693.176108"
+            timestampString = "520077853.57471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "getEventsCommentsAmount(events_keys:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4618,11 +4618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/CommentsHelper.swift"
-            timestampString = "518167693.176108"
+            timestampString = "520077853.57471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "getEventsCommentsAmount(events_keys:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4634,11 +4634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/CommentsHelper.swift"
-            timestampString = "518167693.176108"
+            timestampString = "520077853.57471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "getEventsCommentsAmount(events_keys:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4650,11 +4650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/CommentsHelper.swift"
-            timestampString = "518167693.176108"
+            timestampString = "520077853.57471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "getEventsCommentsAmount(events_keys:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5530,11 +5530,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoPatry/Model.swift"
-            timestampString = "519371901.679514"
+            timestampString = "520077500.829635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "usersLoadedCallback()"
             landmarkType = "7">
          </BreakpointContent>
@@ -5568,6 +5568,134 @@
             startingLineNumber = "69"
             endingLineNumber = "69"
             landmarkName = "createView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoPatry/Model.swift"
+            timestampString = "520077684.917307"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "eventsLoadedCallback()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoPatry.Model.eventsLoadedCallback () -&gt; ()"
+                  moduleName = "GoPatry"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/Model.swift"
+                  timestampString = "520078956.118921"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "232"
+                  endingLineNumber = "232"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoPatry.Model.(eventsLoadedCallback () -&gt; ()).(closure #1)"
+                  moduleName = "GoPatry"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/Model.swift"
+                  timestampString = "520078956.121338"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "232"
+                  endingLineNumber = "232"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoPatry/UserHelper.swift"
+            timestampString = "520078468.610008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "singUpBy(email:pass:callback:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoPatry.UserHelper.singUpBy (email : Swift.String, pass : Swift.String, callback : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.FIRUser&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "GoPatry"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/UserHelper.swift"
+                  timestampString = "520078584.564006"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoPatry.UserHelper.(singUpBy (email : Swift.String, pass : Swift.String, callback : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.FIRUser&gt;) -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "GoPatry"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karnovskiy/Desktop/SwiftProjects/GoPatry/UserHelper.swift"
+                  timestampString = "520078584.566277"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoPatry/UserHelper.swift"
+            timestampString = "520078658.358862"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "singUpBy(email:pass:callback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoPatry/Model.swift"
+            timestampString = "520078977.138487"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "eventsLoadedCallback()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

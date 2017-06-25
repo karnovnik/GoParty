@@ -444,7 +444,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RFj-Mq-jK4" id="Twh-Om-qe1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5c-43-umf" customClass="AvatarView" customModule="GoPatry" customModuleProvider="target">
@@ -644,7 +644,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wTE-b2-ZN9" id="zHD-oV-kMX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kbB-JM-WcP" customClass="AvatarView" customModule="GoPatry" customModuleProvider="target">
@@ -771,7 +771,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="106"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uKo-93-kzx" id="8wQ-Nx-IhC">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaO-E7-4GL">
@@ -1108,7 +1108,7 @@
                                         <rect key="frame" x="0.0" y="10" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SKR-at-D1f" id="fXk-Vc-RO0">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOs-La-CtF">
@@ -1629,7 +1629,7 @@
         <!--Settings-->
         <scene sceneID="YPP-F8-nAK">
             <objects>
-                <viewController title="Settings" id="iti-ez-E9U" sceneMemberID="viewController">
+                <viewController title="Settings" id="iti-ez-E9U" customClass="SettingsViewController" customModule="GoPatry" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lV2-GY-crg"/>
                         <viewControllerLayoutGuide type="bottom" id="r8T-j4-eFP"/>
@@ -1637,7 +1637,22 @@
                     <view key="view" contentMode="scaleToFill" id="nKE-rX-yVt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kay-b7-6p4">
+                                <rect key="frame" x="128" y="86" width="65" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="LogOutAction:" destination="iti-ez-E9U" eventType="touchUpInside" id="ZwD-ij-Ess"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Kay-b7-6p4" firstAttribute="leading" secondItem="nKE-rX-yVt" secondAttribute="leadingMargin" constant="112" id="0jZ-bv-LYT"/>
+                            <constraint firstItem="Kay-b7-6p4" firstAttribute="top" secondItem="lV2-GY-crg" secondAttribute="bottom" constant="66" id="6vL-Ln-GIX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kay-b7-6p4" secondAttribute="trailing" constant="111" id="9zD-AV-BHD"/>
+                            <constraint firstItem="r8T-j4-eFP" firstAttribute="top" secondItem="Kay-b7-6p4" secondAttribute="bottom" constant="403" id="Qor-LW-u7w"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="settings_tab" selectedImage="settings_tab" id="FaI-Nf-jb5">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
@@ -1645,7 +1660,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQ0-rO-dWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-492.5" y="2208.5"/>
+            <point key="canvasLocation" x="-493.125" y="2207.7464788732395"/>
         </scene>
         <!--LoginView-->
         <scene sceneID="o9L-s8-Yef">
@@ -2045,7 +2060,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="29z-V0-dfu" id="gNf-Go-7jH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEk-Ob-NIL" customClass="AvatarView" customModule="GoPatry" customModuleProvider="target">

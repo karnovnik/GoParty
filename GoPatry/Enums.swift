@@ -58,14 +58,14 @@ enum AvailableCategories: Int {
 }
 
 enum CreateEventItemsKeys: Int {
-    case NONE = -1, NAME, DESCRIPTION, DATE, LOCATION, CATEGORY, INVITE
+    case NONE = -1, NAME, DESCRIPTION, DATE, LOCATION/*, CATEGORY*/, INVITE
     
-    static let values = [NAME, DESCRIPTION, DATE, LOCATION, CATEGORY, INVITE]
+    static let values = [NAME, DESCRIPTION, DATE, LOCATION/*, CATEGORY*/, INVITE]
     static let textValues = [NAME:"Название",
                              DESCRIPTION:"Описание",
                              DATE:"Дата проведения",
                              LOCATION:"Место проведения",
-                             CATEGORY:"Тип события",
+                             //CATEGORY:"Тип события",
                              INVITE:"Пригласить друзей"]
     
     func getTextValue() -> String {
